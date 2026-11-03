@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://majestic-pavlova-cc01e9.netlify.app";
 
 const abrirChat = document.getElementById("abrirChat");
 const cerrarChat = document.getElementById("cerrarChat");
