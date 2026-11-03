@@ -3,6 +3,7 @@
 ================================================== */
 .hero {
     min-height: 100vh;
+    min-height: 100svh;
     padding-top: 72px;
     display: flex;
     align-items: center;

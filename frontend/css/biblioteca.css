@@ -1081,3 +1081,39 @@ img { max-width: 100%; display: block; }
         bottom: 80px;
     }
 }
+
+/* ===== CHAT: lado izquierdo (libre del botón del hosting) ===== */
+.boton-asistente {
+    left: 20px;
+    right: auto;
+    bottom: calc(20px + env(safe-area-inset-bottom));
+}
+.ventana-chat {
+    left: 20px;
+    right: auto;
+    bottom: calc(80px + env(safe-area-inset-bottom));
+    width: min(350px, calc(100vw - 40px));
+    height: min(480px, calc(100vh - 110px));
+    height: min(480px, calc(100dvh - 110px));
+}
+@media (max-width: 450px) {
+    .ventana-chat { left: 10px; right: 10px; width: auto; bottom: 80px; }
+    .boton-asistente { left: 10px; padding: 12px 16px; }
+}
+
+/* ===== AJUSTES RESPONSIVE ===== */
+html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+img, iframe { max-width: 100%; }
+.hero { min-height: min(560px, 100svh); }
+
+/* Visor de libros: 100dvh evita que la barra del navegador móvil lo corte */
+.modal-container { height: min(90vh, 850px); height: min(90dvh, 850px); }
+@media (max-width: 650px) {
+    .modal-container { height: 100vh; height: 100dvh; }
+}
+
+/* Teléfono en horizontal (16:9 bajito) */
+@media (orientation: landscape) and (max-height: 500px) {
+    .hero { min-height: auto; padding: 20px 0; }
+    .ventana-chat { height: calc(100dvh - 90px); }
+}
