@@ -1,0 +1,840 @@
+/* ==================================================
+   SECCIONES: Presentación, Historia, Niveles,
+   Infraestructura, Actividades, Frase, Contacto
+================================================== */
+
+/* --- PRESENTACIÓN --- */
+.presentation {
+    padding: 100px 0;
+    background: white;
+    position: relative;
+}
+.presentation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.presentation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.pres-left {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Badge grande de años */
+.years-badge-big {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.years-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(10,42,74,0.25);
+    position: relative;
+}
+.years-circle::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    animation: badgePulse 2s infinite;
+}
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.08); opacity: 0.6; }
+}
+.years-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--gold);
+}
+.years-info {
+    display: flex;
+    flex-direction: column;
+}
+.years-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+}
+.years-sub {
+    font-size: 13px;
+    color: var(--text-mid);
+    font-weight: 500;
+}
+
+/* Tarjetas misión/visión */
+.pres-mission {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.mission-card.glass-card {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+.mission-card.glass-card i {
+    font-size: 28px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+.mission-card.glass-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+.mission-card.glass-card p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.6;
+}
+
+/* Lado derecho */
+.pres-right {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.lead-text {
+    font-size: 17px;
+    line-height: 1.8;
+}
+.pres-right p {
+    color: var(--text-mid);
+    font-size: 15px;
+}
+
+/* Valores */
+.pres-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+.value-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--gray-light);
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+}
+.value-item:hover {
+    background: var(--gold);
+    color: var(--navy);
+    transform: translateX(5px);
+}
+.value-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--navy);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+.value-item:hover .value-icon {
+    background: var(--navy-dark);
+    color: white;
+}
+.value-item span {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* --- HISTORIA (LÍNEA DE TIEMPO) --- */
+.history-section {
+    padding: 100px 0;
+    background: var(--gray-light);
+    position: relative;
+    overflow: hidden;
+}
+.history-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(var(--gray-light), white);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--gold), var(--navy), var(--gold));
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    width: 45%;
+    margin-bottom: 35px;
+}
+.timeline-item.left {
+    margin-right: auto;
+    padding-right: 40px;
+    text-align: right;
+}
+.timeline-item.right {
+    margin-left: auto;
+    padding-left: 40px;
+    text-align: left;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 30px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 16px;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(201,168,76,0.3);
+}
+.timeline-item.left .timeline-dot {
+    right: -22px;
+}
+.timeline-item.right .timeline-dot {
+    left: -22px;
+}
+
+.timeline-year {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 5px;
+}
+.timeline-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+.timeline-card p {
+    font-size: 14px;
+    color: var(--text-mid);
+}
+
+/* --- NIVEL PRIMARIO --- */
+.levels-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    position: relative;
+    overflow: hidden;
+}
+.levels-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    position: relative;
+    z-index: 1;
+}
+
+.level-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: 40px 35px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition);
+}
+.level-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.15);
+    border-color: var(--gold);
+    box-shadow: 0 20px 50px rgba(201,168,76,0.15);
+}
+.level-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+}
+
+.level-number {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    color: rgba(255,255,255,0.05);
+}
+
+.level-icon {
+    font-size: 40px;
+    margin-bottom: 18px;
+    color: var(--gold);
+}
+.level-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: 800;
+}
+.level-card p {
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    margin-bottom: 18px;
+    line-height: 1.7;
+}
+
+.level-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.level-features li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    transition: all 0.3s ease;
+}
+.level-features li i {
+    color: var(--gold);
+    font-size: 10px;
+}
+.level-features li:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+/* --- INFRAESTRUCTURA --- */
+.infra-section {
+    padding: 100px 0;
+    background: white;
+    position: relative;
+}
+
+.infra-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.infra-card {
+    padding: 35px 25px;
+    background: var(--gray-light);
+    border-radius: var(--radius-md);
+    text-align: center;
+    transition: all var(--transition);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+.infra-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gold);
+    background: white;
+}
+.infra-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+.infra-card:hover::before {
+    transform: scaleX(1);
+}
+
+.infra-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+    border-radius: 14px;
+    background: var(--navy);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+.infra-card:hover .infra-icon {
+    background: var(--gold);
+    color: var(--navy);
+    transform: scale(1.1) rotate(5deg);
+}
+.infra-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+.infra-card p {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.6;
+}
+
+/* --- ACTIVIDADES --- */
+.activities-section {
+    padding: 100px 0;
+    background: var(--gray-light);
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.activity-card {
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--gray-mid);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+}
+.activity-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gold);
+}
+
+.activity-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+.activity-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.activity-card:hover .activity-image img {
+    transform: scale(1.1);
+}
+
+.activity-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 5px 14px;
+    border-radius: var(--radius-xl);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: var(--navy);
+    color: var(--gold);
+}
+.activity-badge.sport { background: #1a6b3c; color: white; }
+.activity-badge.culture { background: #8b2252; color: white; }
+.activity-badge.community { background: #b35900; color: white; }
+.activity-badge.env { background: #2d7d46; color: white; }
+.activity-badge.fest { background: #5b21b6; color: white; }
+
+.activity-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e8eff5, #c5d9ef);
+}
+.activity-placeholder.green { background: linear-gradient(135deg, #d4edda, #a3d8b4); }
+.activity-placeholder.purple { background: linear-gradient(135deg, #e8d5f0, #c9a0dc); }
+.huge-icon {
+    font-size: 55px;
+    color: var(--navy-light);
+    opacity: 0.5;
+}
+
+.activity-content {
+    padding: 25px;
+}
+.activity-date {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+.activity-content h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 19px;
+    color: var(--navy);
+    margin-bottom: 10px;
+}
+.activity-content p {
+    color: var(--text-mid);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.activity-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.activity-tags span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    background: var(--gray-light);
+    border-radius: var(--radius-xl);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-mid);
+    transition: all 0.3s ease;
+}
+.activity-tags span:hover {
+    background: var(--gold);
+    color: var(--navy);
+}
+.activity-tags span i {
+    font-size: 10px;
+    color: var(--gold);
+}
+
+/* --- FRASE --- */
+.quote-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.quote-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(201,168,76,0.08), transparent 60%);
+    pointer-events: none;
+}
+
+.quote-content {
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+.quote-icon {
+    font-size: 50px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    animation: quotePulse 3s infinite ease-in-out;
+}
+@keyframes quotePulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; }
+}
+
+.quote-content h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(24px, 4vw, 40px);
+    line-height: 1.4;
+    color: white;
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.quote-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+.author-line {
+    width: 50px;
+    height: 2px;
+    background: var(--gold);
+}
+.quote-author p {
+    color: var(--gold-light);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* --- HIMNO --- */
+.hymn-section {
+    padding: 70px 0;
+    background: var(--gray-light);
+}
+
+.hymn-card {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 45px 35px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+.hymn-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--navy), var(--gold));
+}
+
+.hymn-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--navy);
+    box-shadow: var(--shadow-gold);
+}
+
+.hymn-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 8px;
+}
+.hymn-card p {
+    color: var(--text-mid);
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.hymn-player {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+
+.play-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-gold);
+}
+.play-btn.playing {
+    background: var(--gold);
+    color: var(--navy);
+    animation: playPulse 1s infinite;
+}
+@keyframes playPulse {
+    0%, 100% { box-shadow: 0 0 0 0 var(--gold-glow); }
+    50% { box-shadow: 0 0 0 15px rgba(201,168,76,0); }
+}
+
+.audio-visualizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 35px;
+}
+.audio-visualizer span {
+    width: 4px;
+    background: var(--gold);
+    border-radius: 2px;
+    height: 8px;
+    transition: height 0.15s ease;
+}
+.audio-visualizer.active span {
+    animation: visualizerBar 0.8s infinite ease-in-out;
+}
+.audio-visualizer.active span:nth-child(1) { animation-delay: 0s; }
+.audio-visualizer.active span:nth-child(2) { animation-delay: 0.1s; }
+.audio-visualizer.active span:nth-child(3) { animation-delay: 0.2s; }
+.audio-visualizer.active span:nth-child(4) { animation-delay: 0.05s; }
+.audio-visualizer.active span:nth-child(5) { animation-delay: 0.15s; }
+.audio-visualizer.active span:nth-child(6) { animation-delay: 0.25s; }
+.audio-visualizer.active span:nth-child(7) { animation-delay: 0.08s; }
+.audio-visualizer.active span:nth-child(8) { animation-delay: 0.18s; }
+.audio-visualizer.active span:nth-child(9) { animation-delay: 0.12s; }
+.audio-visualizer.active span:nth-child(10) { animation-delay: 0.22s; }
+
+@keyframes visualizerBar {
+    0%, 100% { height: 6px; }
+    50% { height: 30px; }
+}
+
+/* --- CONTACTO --- */
+.contact-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+    color: white;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.contact-map {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+.contact-map iframe {
+    display: block;
+}
+
+.contact-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+.contact-item:hover .contact-icon {
+    background: var(--gold);
+    color: var(--navy);
+    transform: rotate(10deg) scale(1.1);
+}
+.contact-item strong {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 2px;
+}
+.contact-item p {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+}
+
+.contact-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.social-btn.facebook {
+    background: #1877f2;
+    color: white;
+}
+.social-btn.facebook:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(24,119,242,0.4);
+}
+.social-btn.youtube {
+    background: #ff0000;
+    color: white;
+}
+.social-btn.youtube:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255,0,0,0.4);
+}

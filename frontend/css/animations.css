@@ -1,0 +1,43 @@
+/* Efecto de escritura para la frase — versión responsiva */
+.typewriter-text {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 3px solid var(--gold);
+    white-space: normal;              /* ← permite saltos de línea */
+    animation: blinkCursor 0.7s infinite;
+    /* Sin width animado, sin steps() */
+    opacity: 1;
+}
+
+/* Envolvemos la animación en un reveal suave */
+.quote-content .typewriter-text {
+    animation: quoteReveal 1.2s ease forwards, blinkCursor 0.7s infinite 1.2s;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+@keyframes quoteReveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blinkCursor {
+    0%, 100% { border-color: var(--gold); }
+    50%      { border-color: transparent; }
+}
+
+/* En desktop sí podemos hacer el efecto de tipeo real */
+@media (min-width: 900px) {
+    .quote-content .typewriter-text {
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        opacity: 1;
+        transform: none;
+        animation:
+            typewriter 3.5s steps(78, end) 0.4s forwards,
+            blinkCursor 0.7s infinite 0.4s;
+    }
+    @keyframes typewriter {
+        to { width: 100%; }
+    }
+}

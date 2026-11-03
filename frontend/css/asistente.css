@@ -1,0 +1,147 @@
+/* ==================================================
+   ASISTENTE DE ESTUDIO IA — ESTILOS
+   Biblioteca Virtual Inteligente · I.E. Javier Pérez de Cuéllar
+================================================== */
+:root{
+  --ia-rojo:#9b1c1c; --ia-rojo2:#c0392b; --ia-oro:#d4a017;
+  --ia-oscuro:#1c1c24; --ia-gris:#f4f5f7; --ia-borde:#e6e7ea;
+}
+
+/* ---- Botón flotante ---- */
+.ia-fab{
+  position:fixed; right:22px; bottom:22px; z-index:9500;
+  display:flex; align-items:center; gap:10px;
+  background:linear-gradient(135deg,var(--ia-rojo),var(--ia-rojo2));
+  color:#fff; border:none; cursor:pointer;
+  padding:12px 18px 12px 14px; border-radius:50px;
+  box-shadow:0 10px 28px rgba(155,28,28,.4);
+  font-family:'Poppins',sans-serif; font-weight:600; font-size:15px;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.ia-fab:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 14px 34px rgba(155,28,28,.5); }
+.ia-fab .ia-fab-ico{
+  width:38px; height:38px; border-radius:50%;
+  background:rgba(255,255,255,.18); display:grid; place-items:center;
+  font-size:20px; animation:iaBob 2.4s ease-in-out infinite;
+}
+.ia-fab .ia-fab-txt{ line-height:1.1; text-align:left; }
+.ia-fab .ia-fab-txt small{ display:block; font-weight:400; font-size:11px; opacity:.85; }
+@keyframes iaBob{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+.ia-fab.hide{ transform:scale(0); opacity:0; pointer-events:none; }
+@media(max-width:560px){ .ia-fab .ia-fab-txt{ display:none; } .ia-fab{ padding:14px; } }
+
+/* ---- Ventana del chat ---- */
+.ia-panel{
+  position:fixed; right:22px; bottom:22px; z-index:9600;
+  width:390px; max-width:calc(100vw - 24px);
+  height:620px; max-height:calc(100vh - 40px);
+  background:#fff; border-radius:20px; overflow:hidden;
+  display:flex; flex-direction:column;
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+  transform:translateY(30px) scale(.96); opacity:0; pointer-events:none;
+  transition:transform .3s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+}
+.ia-panel.open{ transform:translateY(0) scale(1); opacity:1; pointer-events:auto; }
+@media(max-width:480px){
+  .ia-panel{ right:0; bottom:0; width:100vw; height:100vh; max-height:100vh; border-radius:0; }
+}
+
+/* ---- Cabecera ---- */
+.ia-head{
+  background:linear-gradient(135deg,var(--ia-rojo),var(--ia-rojo2));
+  color:#fff; padding:14px 16px; display:flex; align-items:center; gap:12px;
+}
+.ia-head .ia-ava{
+  width:44px; height:44px; border-radius:50%; flex:0 0 auto;
+  background:rgba(255,255,255,.18); display:grid; place-items:center; font-size:22px;
+}
+.ia-head h3{ margin:0; font-size:16px; font-family:'Poppins',sans-serif; }
+.ia-head p{ margin:2px 0 0; font-size:12px; opacity:.9; display:flex; align-items:center; gap:6px; }
+.ia-dot{ width:8px; height:8px; border-radius:50%; background:#2ecc71; box-shadow:0 0 0 3px rgba(46,204,113,.3); }
+.ia-head .ia-head-sp{ flex:1; }
+.ia-xbtn{ background:rgba(255,255,255,.15); border:none; color:#fff; width:34px; height:34px; border-radius:50%; cursor:pointer; font-size:16px; transition:background .2s; }
+.ia-xbtn:hover{ background:rgba(255,255,255,.3); }
+
+/* ---- Selector de modo (grado) ---- */
+.ia-modes{ display:flex; gap:6px; padding:10px 12px; background:var(--ia-gris); border-bottom:1px solid var(--ia-borde); }
+.ia-mode{
+  flex:1; border:1px solid var(--ia-borde); background:#fff; border-radius:10px;
+  padding:7px 4px; cursor:pointer; text-align:center; font-family:'Poppins',sans-serif;
+  font-size:11px; color:#555; transition:all .2s; line-height:1.2;
+}
+.ia-mode .e{ font-size:17px; display:block; }
+.ia-mode small{ display:block; font-size:9px; opacity:.7; }
+.ia-mode.active{ background:var(--ia-rojo); color:#fff; border-color:var(--ia-rojo); box-shadow:0 4px 12px rgba(155,28,28,.3); }
+.ia-mode.active small{ opacity:.9; }
+
+/* ---- Cuerpo de mensajes ---- */
+.ia-body{ flex:1; overflow-y:auto; padding:16px 14px; background:#fbfbfc; scroll-behavior:smooth; }
+.ia-body::-webkit-scrollbar{ width:7px; }
+.ia-body::-webkit-scrollbar-thumb{ background:#d8d9dd; border-radius:10px; }
+
+.ia-msg{ display:flex; gap:9px; margin-bottom:14px; align-items:flex-end; animation:iaIn .3s ease; }
+@keyframes iaIn{ from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)} }
+.ia-msg .ia-bub-ava{ width:30px; height:30px; border-radius:50%; flex:0 0 auto; display:grid; place-items:center; font-size:15px; background:linear-gradient(135deg,var(--ia-rojo),var(--ia-rojo2)); color:#fff; }
+.ia-bub{ max-width:80%; padding:10px 13px; border-radius:14px; font-size:14px; line-height:1.5; color:#2a2a30; }
+.ia-msg.bot .ia-bub{ background:#fff; border:1px solid var(--ia-borde); border-bottom-left-radius:4px; box-shadow:0 2px 6px rgba(0,0,0,.04); }
+.ia-msg.user{ flex-direction:row-reverse; }
+.ia-msg.user .ia-bub{ background:linear-gradient(135deg,var(--ia-rojo),var(--ia-rojo2)); color:#fff; border-bottom-right-radius:4px; }
+.ia-msg.user .ia-bub-ava{ background:var(--ia-oro); color:#3a2c00; }
+.ia-bub b{ color:inherit; }
+.ia-bub .ia-src{ display:block; margin-top:7px; font-size:12px; color:var(--ia-rojo); font-style:italic; }
+.ia-msg.user .ia-bub .ia-src{ color:#ffe; }
+
+/* ---- Tarjetas de libro recomendado ---- */
+.ia-books{ display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+.ia-book{ display:flex; gap:10px; align-items:center; background:var(--ia-gris); border:1px solid var(--ia-borde); border-radius:12px; padding:8px; cursor:pointer; transition:all .2s; text-align:left; width:100%; }
+.ia-book:hover{ background:#fff; border-color:var(--ia-rojo); transform:translateX(3px); }
+.ia-book img{ width:40px; height:54px; object-fit:cover; border-radius:6px; flex:0 0 auto; background:#ddd; }
+.ia-book .ia-book-i{ flex:1; min-width:0; }
+.ia-book .ia-book-i strong{ display:block; font-size:12.5px; color:var(--ia-oscuro); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ia-book .ia-book-i small{ font-size:11px; color:#777; }
+.ia-book .ia-book-go{ color:var(--ia-rojo); font-size:13px; flex:0 0 auto; }
+
+/* ---- Chips de sugerencias ---- */
+.ia-chips{ display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
+.ia-chip{ background:#fff; border:1px solid var(--ia-rojo); color:var(--ia-rojo); border-radius:20px; padding:6px 12px; font-size:12px; cursor:pointer; transition:all .2s; font-family:'Poppins',sans-serif; }
+.ia-chip:hover{ background:var(--ia-rojo); color:#fff; }
+
+/* ---- Escribiendo... ---- */
+.ia-typing{ display:flex; gap:4px; padding:4px 2px; }
+.ia-typing span{ width:7px; height:7px; border-radius:50%; background:#bbb; animation:iaType 1s infinite; }
+.ia-typing span:nth-child(2){ animation-delay:.15s; }
+.ia-typing span:nth-child(3){ animation-delay:.3s; }
+@keyframes iaType{ 0%,60%,100%{transform:translateY(0);opacity:.4} 30%{transform:translateY(-5px);opacity:1} }
+
+/* ---- Quiz ---- */
+.ia-quiz{ margin-top:10px; background:#fff; border:1px solid var(--ia-borde); border-radius:14px; padding:12px; }
+.ia-quiz .ia-q-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.ia-quiz .ia-q-top b{ font-size:13px; color:var(--ia-oscuro); }
+.ia-quiz .ia-q-prog{ font-size:11px; color:#888; }
+.ia-quiz .ia-q-text{ font-size:14px; font-weight:600; color:#2a2a30; margin-bottom:10px; }
+.ia-opt{ display:block; width:100%; text-align:left; background:var(--ia-gris); border:1.5px solid var(--ia-borde); border-radius:10px; padding:9px 12px; margin-bottom:7px; font-size:13px; cursor:pointer; transition:all .18s; font-family:'Poppins',sans-serif; color:#333; }
+.ia-opt:hover:not(:disabled){ border-color:var(--ia-rojo); background:#fff; }
+.ia-opt:disabled{ cursor:default; }
+.ia-opt.ok{ background:#e9f9ef; border-color:#2ecc71; color:#1e7e45; font-weight:600; }
+.ia-opt.bad{ background:#fdecea; border-color:#e74c3c; color:#b03a2e; font-weight:600; }
+.ia-quiz-bar{ height:6px; background:var(--ia-gris); border-radius:6px; overflow:hidden; margin-bottom:10px; }
+.ia-quiz-bar span{ display:block; height:100%; background:linear-gradient(90deg,var(--ia-rojo),var(--ia-oro)); transition:width .3s; }
+
+/* ---- Resultado del quiz ---- */
+.ia-result{ text-align:center; padding:6px 4px; }
+.ia-result .ia-score{ font-size:30px; font-weight:800; color:var(--ia-rojo); font-family:'Poppins',sans-serif; }
+.ia-result .ia-stars{ font-size:22px; letter-spacing:3px; margin:6px 0; }
+.ia-result p{ margin:4px 0 0; font-size:13px; color:#555; }
+
+/* ---- Barra de entrada ---- */
+.ia-foot{ padding:10px 12px; border-top:1px solid var(--ia-borde); background:#fff; }
+.ia-inrow{ display:flex; gap:8px; align-items:center; }
+.ia-inrow input{ flex:1; border:1.5px solid var(--ia-borde); border-radius:22px; padding:10px 15px; font-size:14px; outline:none; font-family:'Poppins',sans-serif; transition:border-color .2s; }
+.ia-inrow input:focus{ border-color:var(--ia-rojo); }
+.ia-sendbtn,.ia-micbtn{ width:42px; height:42px; flex:0 0 auto; border:none; border-radius:50%; cursor:pointer; font-size:16px; display:grid; place-items:center; transition:transform .15s,background .2s; }
+.ia-sendbtn{ background:linear-gradient(135deg,var(--ia-rojo),var(--ia-rojo2)); color:#fff; }
+.ia-sendbtn:hover{ transform:scale(1.08); }
+.ia-micbtn{ background:var(--ia-gris); color:var(--ia-rojo); border:1.5px solid var(--ia-borde); }
+.ia-micbtn.rec{ background:var(--ia-rojo); color:#fff; animation:iaPulse 1s infinite; }
+@keyframes iaPulse{ 0%,100%{box-shadow:0 0 0 0 rgba(155,28,28,.5)} 50%{box-shadow:0 0 0 7px rgba(155,28,28,0)} }
+.ia-foot .ia-note{ text-align:center; font-size:10px; color:#aaa; margin-top:6px; }

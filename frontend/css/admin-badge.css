@@ -1,0 +1,55 @@
+/* ==================================================
+   ADMIN BADGE – Acceso al panel de administración
+================================================== */
+.admin-toggle {
+    position: fixed;
+    bottom: 80px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--gold);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(10,42,74,0.3);
+}
+.admin-toggle:hover {
+    transform: rotate(180deg) scale(1.1);
+    background: var(--gold);
+    color: var(--navy);
+}
+
+/* Botón volver arriba */
+.back-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    z-index: 900;
+    box-shadow: var(--shadow-gold);
+}
+.back-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+.back-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 30px rgba(201,168,76,0.5);
+}

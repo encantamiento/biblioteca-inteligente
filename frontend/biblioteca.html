@@ -1,0 +1,2540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual — I.E. Javier Pérez de Cuéllar</title>
+    <meta name="description" content="Biblioteca virtual escolar con más de 170 libros para primero a sexto de primaria">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/biblioteca.css" />
+</head>
+<button id="abrirChat" class="boton-asistente">
+    🤖 Asistente educativo
+</button>
+
+<div id="ventanaChat" class="ventana-chat" hidden>
+
+    <div class="chat-cabecera">
+        <div>
+            <strong>🤖 Asistente educativo</strong>
+            <small>Biblioteca Javier Pérez de Cuéllar</small>
+        </div>
+
+        <button id="cerrarChat">✕</button>
+    </div>
+
+    <div id="mensajesChat" class="mensajes-chat">
+        <div class="mensaje ia">
+            ¡Hola! Soy tu asistente educativo.
+            ¿Qué quieres aprender hoy?
+        </div>
+    </div>
+
+    <div class="chat-controles">
+
+        <select id="gradoChat">
+            <option value="1">1.er grado</option>
+            <option value="2">2.º grado</option>
+            <option value="3">3.er grado</option>
+            <option value="4" selected>4.º grado</option>
+            <option value="5">5.º grado</option>
+            <option value="6">6.º grado</option>
+        </select>
+
+        <div class="chat-entrada">
+            <input
+                id="preguntaChat"
+                type="text"
+                placeholder="Escribe tu pregunta..."
+            >
+
+            <button id="enviarChat">Enviar</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="chatbot.js"></script>
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-book"><i class="fas fa-book-open"></i></div>
+        <div class="loader-text">BIBLIOTECA VIRTUAL</div>
+        <div class="loader-bar"><span></span></div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="main-header">
+    <div class="container nav-container">
+        <a href="biblioteca.html" class="logo">
+            <img src="img/logo.webp" alt="I.E. Javier Pérez de Cuéllar" class="logo-img"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-icon" style="display:none;"><i class="fas fa-book-open"></i></div>
+            <div class="logo-text">
+                <strong>Biblioteca</strong>
+                <span>Virtual Escolar</span>
+            </div>
+        </a>
+
+        <nav class="desktop-nav">
+            <a href="index.html"><i class="fas fa-house"></i> Inicio</a>
+            <a href="#grados"><i class="fas fa-layer-group"></i> Grados</a>
+            <a href="#informacion"><i class="fas fa-circle-info"></i> Información</a>
+        </nav>
+
+        <div class="nav-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="buscar" placeholder="Buscar libro...">
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html"><i class="fas fa-house"></i> Inicio</a>
+        <a href="#grados"><i class="fas fa-layer-group"></i> Grados</a>
+        <a href="#informacion"><i class="fas fa-circle-info"></i> Información</a>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <div class="hero-badge">
+            <i class="fas fa-graduation-cap"></i> BIBLIOTECA ESCOLAR
+        </div>
+        <h1>Un mundo de <span>historias</span> por descubrir</h1>
+        <p>Explora más de 170 libros educativos para estudiantes de primero a sexto grado de primaria.</p>
+        <div class="hero-buttons">
+            <a href="#grados" class="btn btn-primary"><i class="fas fa-book-open"></i> Explorar biblioteca</a>
+            <a href="index.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+        </div>
+    </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label"><i class="fas fa-book"></i> NUESTRA COLECCIÓN</span>
+            <h2>Libros para cada <span class="gold-text">grado</span></h2>
+            <p class="section-subtitle">Selecciona tu grado y descubre los libros disponibles para leer en línea.</p>
+        </div>
+
+        <div class="grade-buttons">
+            <a href="#grado1" class="grade-button"><span>01</span><div><strong>Primero</strong><small>Primaria · 17</small></div><i class="fas fa-chevron-right"></i></a>
+            <a href="#grado2" class="grade-button"><span>02</span><div><strong>Segundo</strong><small>Primaria · 28</small></div><i class="fas fa-chevron-right"></i></a>
+            <a href="#grado3" class="grade-button"><span>03</span><div><strong>Tercero</strong><small>Primaria · 30</small></div><i class="fas fa-chevron-right"></i></a>
+            <a href="#grado4" class="grade-button"><span>04</span><div><strong>Cuarto</strong><small>Primaria · 26</small></div><i class="fas fa-chevron-right"></i></a>
+            <a href="#grado5" class="grade-button"><span>05</span><div><strong>Quinto</strong><small>Primaria · 40</small></div><i class="fas fa-chevron-right"></i></a>
+            <a href="#grado6" class="grade-button"><span>06</span><div><strong>Sexto</strong><small>Primaria · 30</small></div><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- LIBRERÍA -->
+<main class="library" id="grados">
+<div class="container">
+
+<!-- ==================================================
+     PRIMER GRADO — 17 LIBROS
+================================================== -->
+<section class="grade-section" id="grado1">
+    <div class="grade-heading">
+        <div><span class="section-label">PRIMER GRADO</span><h2>1.º de <span>Primaria</span></h2></div>
+        <span class="book-count">17 libros</span>
+    </div>
+    <div class="books-grid">
+
+        <article class="book-card" data-title="Willaykuna" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/willaykuna.webp" alt="Willaykuna" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/9b1c1c/ffffff?text=WILLAYKUNA'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1aXrwHDHUridQvxw9m6UWgi2lfUdfiAIX/view?usp=drive_link','Willaykuna','Primer grado — Comunicación')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Willaykuna</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Musnushu" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/Musnushu.webp" alt="Musnushu" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/e8a04a/5a2c1a?text=MUSNUSHU'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/126tPpRqr-ScW8ajqiSWEz0VvQozm0ntn/view?usp=drive_link','Musnushu','Primer grado — Lectura')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Musnushu</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Etsa Nayapjai" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/EtsaNayapjai.webp" alt="Etsa Nayapjai" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/2a7a4a/ffffff?text=ETSA+NAYAPJAI'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1akslQqyJIqzZCz8epBO3ZJLPWtUIM7Ul/view?usp=drive_link','Etsa Nayapjai','Primer grado — Lectura')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Etsa Nayapjai</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Caracol y el Rosal" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/ElCaracolyelRosal.webp" alt="El Caracol y el Rosal" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/ffffff/333333?text=EL+CARACOL'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/106yv2Mvn3R8xyU_Do90Z14Um9dWBtg4U/view?usp=drive_link','El Caracol y el Rosal','Primer grado — Literatura')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Caracol y el Rosal</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Uchi Pujutji Augmatau" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/UchiPujutjiAugmatau.webp" alt="Uchi Pujutji Augmatau" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/4a7a2a/ffffff?text=UCHI+PUJUTJI'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1aWjTTRp8J8tu7aCwSW4pbtMa2CY5EjNq/view?usp=drive_link','Uchi Pujutji Augmatau','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Uchi Pujutji Augmatau</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Desde mi Ventana" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/DesdemiVentana.webp" alt="Desde mi Ventana" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/d6e8f5/0a2a4a?text=DESDE+MI+VENTANA'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1mPq4ekd4Z-y16zE141cGSVzzHRbKUj1H/view?usp=drive_link','Desde mi Ventana','Primer grado — Personal Social')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Desde mi Ventana</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Mi Alpaca Kusi" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/miAlpacaKusi.webp" alt="Mi Alpaca Kusi" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/f5d76e/5a2c1a?text=MI+ALPACA+KUSI'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1ab-lTyVVmTsTmaid4yfTz4B2bsS2WYzN/view?usp=drive_link','Mi Alpaca Kusi','Primer grado — Personal Social')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Mi Alpaca Kusi</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="A mi Perro" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/AmiPerro.webp" alt="A mi Perro" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/eee6d8/8a4a1a?text=A+MI+PERRO'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1VlGDbIDER4-NkGPuR6-IDPcgXj0FBJNs/view?usp=drive_link','A mi Perro','Primer grado — Poesía')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>A mi Perro</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Viaje al Cielo" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/ElViajealCielo.webp" alt="El Viaje al Cielo" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/4a9bd4/ffffff?text=EL+VIAJE+AL+CIELO'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/15PxK0WZqgYeBH0b0zS_yyCyPlo8U3v1_/view?usp=drive_link','El Viaje al Cielo','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Viaje al Cielo</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Zorro Enamorado de la Luna" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/elzorroenamoradodelaluna.webp" alt="El Zorro Enamorado de la Luna" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/2a5a9b/ffd54a?text=EL+ZORRO'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1miudve_gjOj_vxhHlhIBO9Nx_9wBU0Zp/view?usp=drive_link','El Zorro Enamorado de la Luna','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Zorro Enamorado de la Luna</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Antes muy Antes" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/AntesmuyAntes.webp" alt="Antes muy Antes" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/d9c9a5/5a3a1a?text=ANTES+MUY+ANTES'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1K4AekmUW98jP2REXYY_oFFQFFlrlovmy/view?usp=drive_link','Antes muy Antes','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Antes muy Antes</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Intimpa, Árbol del Sol" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/IntimpaArboldelSol.webp" alt="Intimpa, Árbol del Sol" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/3a9a4a/ffd54a?text=INTIMPA'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1ld6DPEZPob8i99pvLCDI_bhbt0jlnejD/view?usp=drive_link','Intimpa, Árbol del Sol','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Intimpa, Árbol del Sol</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Fiesta de las Tanta Wawas" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/LaFiestadelasTantaWawas.webp" alt="La Fiesta de las Tanta Wawas" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/f5b842/5a2c1a?text=LA+FIESTA'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Cc2dD9G0i81RdMclfIlVGCX_WZRMnulK/view?usp=drive_link','La Fiesta de las Tanta Wawas','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Fiesta de las Tanta Wawas</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Abuela Micaela" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/LaAbuelaMicaela.webp" alt="La Abuela Micaela" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/c4879a/ffffff?text=LA+ABUELA'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1s2k43QnNS53W7EkE7Zy_A0nPphnxS_pr/view?usp=drive_link','La Abuela Micaela','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Abuela Micaela</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Mi Mantita Linda" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/MiMantitaLinda.webp" alt="Mi Mantita Linda" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/7ac4a5/5a2c1a?text=MI+MANTITA+LINDA'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/12lcpnxNkID5PoA_D61BZ3BXodBbIQOWR/view?usp=drive_link','Mi Mantita Linda','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Mi Mantita Linda</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Muqui" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/ElMuqui.webp" alt="El Muqui" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/8a4a1a/ffd54a?text=EL+MUQUI'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/17ya4SndDaaRpmNHQSkHO3wn_7RqqiyML/view?usp=drive_link','El Muqui','Primer grado — Leyenda')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Muqui</h3><span>Primer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Nunash, la Bella Durmiente" data-grade="1">
+            <div class="book-cover">
+                <img src="img/libros/NunashlaBellaDurmiente.webp" alt="Nunash, la Bella Durmiente" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/5aa86a/ffffff?text=NUNASH'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1_gpf32_wUeJuhq9o0mR7EPzFKm3PrRYl/view?usp=drive_link','Nunash, la Bella Durmiente','Primer grado — Cuento')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Nunash, la Bella Durmiente</h3><span>Primer grado</span></div>
+        </article>
+
+    </div>
+</section>
+
+<!-- ==================================================
+     SEGUNDO GRADO — 28 LIBROS
+================================================== -->
+<section class="grade-section" id="grado2">
+    <div class="grade-heading">
+        <div><span class="section-label">SEGUNDO GRADO</span><h2>2.º de <span>Primaria</span></h2></div>
+        <span class="book-count">28 libros</span>
+    </div>
+    <div class="books-grid">
+
+        <article class="book-card" data-title="canciones para bebes" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/cancionesparabebes.webp" alt="canciones para bebes" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x700/5aa86a/fffff?text=NUMOS'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/17HgVsZGwRVD1brKxiIFz1PQqS6Lbcaes/view?usp=drive_link','Libro 01 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Canciones para bebes</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Mi Mantita Linda" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/MiMantitaLinda.webp" alt="Libro 02 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+02'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1AT4uDHIyv3SWrpjgB_V0QGI4rUSlff0u/view?usp=drive_link','Libro 02 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Mi Mantita Linda</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Narramos anécdotas" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/Narramosanecdotas.webp" alt="Libro 03 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+03'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1BrMU1Lsse01OZoFCOOVt9_rih6_3y2De/view?usp=drive_link','Libro 03 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Narramos anécdotas</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="willaykuna" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/willaykuna.webp" alt="Libro 04 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+04'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1DrwE5_J0lGehw_kGBk3SKgGqcYv8md3Q/view?usp=drive_link','Libro 04 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>willaykuna</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Canciones para bebes 2" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/cancionesparabebes2.webp" alt="Libro 05 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+05'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1ETGnRE_68O7TjcP1N5HEqvAnknOpJf76/view?usp=drive_link','Libro 05 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Canciones para bebes 2</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La papa, tesoro de la tierra" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/Lapapatesorodelatierra.webp" alt="Libro 06 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+06'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1FphGNdiwTou6Duf12WpHIm9H0CAddN0R/view?usp=drive_link','Libro 06 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La papa, tesoro de la tierra</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Avantsani" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/Avantsani.webp" alt="Libro 07 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+07'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1GAPlus6AHI_Yp82OdenDyHULLla5WL7V/view?usp=drive_link','Libro 07 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Avantsani</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Zorro Enamorado de la Luna" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/elzorroenamoradodelaluna.webp" alt="Libro 08 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+08'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1IEYCQ_N3d27wG_Ygnvh64p_PfC7nuQqn/view?usp=drive_link','Libro 08 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Zorro Enamorado de la Luna</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Cuentos de la selva" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/Cuentosdelaselva.webp" alt="Libro 09 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+09'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Nhbq_jhC9VhasRNbTal7quFLzO43It2X/view?usp=drive_link','Libro 09 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Cuentos de la selva</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Intimpa Árbol del Sol" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/IntimpaArboldelSol.webp" alt="Libro 10 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+10'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1NuShU5BHWwWHGyDa-pkmSwmVkSZkxsT3/view?usp=drive_link','Libro 10 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Intimpa, Árbol del Sol</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Viringo, el perro sin pelo del Perú" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/ViringoelperrosinpelodelPerú.webp" alt="Libro 11 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+11'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1OaBk2yAjz76arYRyMQcK4yCmDmbrXfih/view?usp=drive_link','Libro 11 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Viringo, el perro sin pelo del Perú</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Uno, dos, tres... escalones de Taquile" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/UnodostresescalonesdeTaquile.webp" alt="Libro 12 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+12'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1PhlIxffjNEcCgjaX4nmSnSkgUss29zl_/view?usp=drive_link','Libro 12 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Uno, dos, tres... escalones de Taquile</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Antes muy Antes" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/AntesmuyAntes.webp" alt="Libro 13 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+13'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1PsTxLzH6LoVNSGBnDCA0AIDoZAS4Q6G1/view?usp=drive_link','Libro 13 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Antes muy Antes</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Caracol y el Rosal" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/ElCaracolyelRosal.webp" alt="Libro 14 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+14'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1QJ2SWVdD-fdZHQgXfJ6Q7uRBphEZYeyq/view?usp=drive_link','Libro 14 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Caracol y el Rosal</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Okiro, Tontori y Ho" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/OkiroTontoriyHo.webp" alt="Libro 15 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+15'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1TtDsAtcJu9inPLjvJ0d_knw0goP0YppF/view?usp=drive_link','Libro 15 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Okiro, Tontori y Ho</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Llakiy Qunqachiy" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/LlakiyQunqachiy.webp" alt="Libro 16 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+16'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1VNn1xsmNmrJ92X0e-Yl2a4z43T3wEXGw/view?usp=drive_link','Libro 16 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Llakiy Qunqachiy</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="¡Unas vacaciones diferentes!" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/Unasvacacionesdiferentes.webp" alt="Libro 17 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+17'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1ZbrDj9r-Lu2XVHsRzOVPKp1BLviRl5a4/view?usp=drive_link','Libro 17 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>¡Unas vacaciones diferentes!</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Akenkitharipaeni" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/Akenkitharipaeni.webp" alt="Libro 18 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+18'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1a8gGvozbKhYsg0YJb9tk16XxTEwvRbTm/view?usp=drive_link','Libro 18 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Akenkitharipaeni</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Orientacion para elavorar una Bitácora de lectura" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/OrientacionparaelavorarunaBitacoradelectura.webp" alt="Libro 19 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+19'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1ade1p_y31yVHm98-0_ne0QJOvltDEeqn/view?usp=drive_link','Libro 19 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Orientacion para elavorar una Bitácora de lectura</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Abuela Micaela" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/LaAbuelaMicaela.webp" alt="Libro 20 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+20'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1fs5_ZiQjfbVJXmyb1MyM_gC02_MYn232/view?usp=drive_link','Libro 20 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La buela Micaela</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="I Warmacha" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/IWarmacha.webp" alt="Libro 21 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+21'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1imI_fthnfkqWJ_GYs9qO4gy3QgV-bJPa/view?usp=drive_link','Libro 21 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>I Warmacha</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Muqui" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/ElMuqui.webp" alt="Libro 22 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+22'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1izxGJK4nqkBPj9Jj0FuEPon3clDpANLa/view?usp=drive_link','Libro 22 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Muqui</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Fiesta de las TantaWawas" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/LaFiestadelasTantaWawas.webp" alt="Libro 23 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+23'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1jpQZA5ETvVbIoG-nKNISOrMYqYBlYUzh/view?usp=drive_link','Libro 23 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Fiesta de las TantaWawas</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Nunash, la Bella Durmiente" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/NunashlaBellaDurmiente.webp" alt="Libro 24 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+24'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1m8MR3RkAG4p9sOcTmvcfAng1ds179Gq5/view?usp=drive_link','Libro 24 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Nunash, la Bella Durmiente</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El agua" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/Elagua.webp" alt="Libro 25 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+25'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1mTL8Rh7YBv2IHqLfZGMexN7__gkWFypI/view?usp=drive_link','Libro 25 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El agua</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 26 — Segundo" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/libro_26_segundo.webp" alt="Libro 26 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+26'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1p6XnXb9g6FY3HTBbSoHBW-WZnQCePDlM/view?usp=drive_link','Libro 26 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 26 — Segundo</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Dos abejas amigas" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/DosAbejasAmigas.webp" alt="Libro 27 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+27'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1y8bmpb_KiEW_omXxMimQqiMC4wFlqrz2/view?usp=drive_link','Libro 27 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Dos Abejas Amigas</h3><span>Segundo grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Viaje al Cielo" data-grade="2">
+            <div class="book-cover">
+                <img src="img/libros/ElViajealCielo.webp" alt="Libro 28 Segundo" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+28'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1zsGsMVzNCOOxiOMe9w9m1U15nAAaEL4t/view?usp=drive_link','Libro 28 — Segundo','Segundo grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Viaje al Cielo</h3><span>Segundo grado</span></div>
+        </article>
+
+    </div>
+</section>
+
+<!-- ==================================================
+     TERCER GRADO — 30 LIBROS
+================================================== -->
+<section class="grade-section" id="grado3">
+    <div class="grade-heading">
+        <div><span class="section-label">TERCER GRADO</span><h2>3.º de <span>Primaria</span></h2></div>
+        <span class="book-count">30 libros</span>
+    </div>
+    <div class="books-grid">
+
+        <article class="book-card" data-title="Huk Kutis Kasqa..." data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/HukKutisKasqa.webp" alt="Libro 01 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+01'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/12nP5717lYEb3_MVoZkXJBNL2oJrAyEpd/view?usp=drive_link','Libro 01 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Huk Kutis Kasqa...</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Un nuevo comienzo" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Unnuevocomienzo.webp" alt="Libro 02 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+02'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/13ydSLnHL43uw4sb8NyRmMtL5FM_9rj_S/view?usp=drive_link','Libro 02 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Un nuevo comienzo</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Cuentos de la selva" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Cuentosdelaselva.webp" alt="Libro 03 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+03'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/14u03hlJF2rb4eqzQg2b19QrtynE0tAJY/view?usp=drive_link','Libro 03 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Cuentos de la selva</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Daniela" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Daniela.webp" alt="Libro 04 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+04'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/15zQxfV9iqZWD-GKY_5qN2YlMi8Ggiq-4/view?usp=drive_link','Libro 04 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Daniela</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Abuela Micaela" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/LaAbuelaMicaela.webp" alt="Libro 05 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+05'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/181cyLLrrDrbqGoNPSN1kgLBjAUOFWqq3/view?usp=drive_link','Libro 05 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Abuela Micaela</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Nuestras tradiciones y costumbres" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Nuestrastradicionesycostumbres.webp" alt="Libro 06 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+06'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1C7uqF5RWzsMFQHOd4e5MGpZkos1wNWha/view?usp=drive_link','Libro 06 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Nuestras tradiciones y costumbres</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La achirana del lnca" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Laachiranadellnca.webp" alt="Libro 07 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+07'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1CSQiriOeUBJrT08hav3W0ifGrAyKIKH_/view?usp=drive_link','Libro 07 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La achirana del lnca</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Failoc y el mar caliente de Lambayeque" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/FailocyelmarcalientedeLambayeque.webp" alt="Libro 08 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+08'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Cnxfg8eFgRiedDymhbJsYPha9x7nA5LS/view?usp=drive_link','Libro 08 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Failoc y el mar caliente de Lambayequeo</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Caracol y el Rosal" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/ElCaracolyelRosal.webp" alt="Libro 09 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+09'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1EaNmyKtf93rQJXaZF1j2-Z1v42lvNlhT/view?usp=drive_link','Libro 09 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Caracol y el Rosal</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Nunash la Bella Durmiente" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/NunashlaBellaDurmiente.webp" alt="Libro 10 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+10'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1F1tMTDqwVewEj9ti9eS7N1coslKCoxpf/view?usp=drive_link','Libro 10 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Nunash la Bella Durmiente</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Nuevos amigos" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Nuevosamigos.webp" alt="Libro 11 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+11'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Fqupj3OixnyoHVXYV4riYncctNwpr5Ii/view?usp=drive_link','Libro 11 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Nuevos amigos</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Alfarero Rebelde" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/ElAlfareroRebelde.webp" alt="Libro 12 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+12'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1HyCK7ep3AkplxbbdXB6_vS9WiBt-Fbpx/view?usp=drive_link','Libro 12 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Alfarero Rebelde</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Dédalo e Icaro" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/DedaloeIcaro.webp" alt="Libro 13 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+13'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1JYbpcm7-LD6OPImgezMNqoOl2RwnWf1Q/view?usp=drive_link','Libro 13 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Dédalo e Icaro</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Nube Viajera" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/LaNubeViajera.webp" alt="Libro 14 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+14'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1JqUNfyp08a3WYDlqYicJAPILnM1iP-sT/view?usp=drive_link','Libro 14 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Nube Viajera</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La energía" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Laenergia.webp" alt="Libro 15 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+15'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1MWmCWFPdf0ufc1WrUTUyZ2DUy3vSkRnZ/view?usp=drive_link','Libro 15 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La energía</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Intimpa, Arbol del Sol" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/IntimpaArboldelSol.webp" alt="Libro 16 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+16'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Mn6dSRfy1Y9WHGgrfhxinxmsWIqSNtjO/view?usp=drive_link','Libro 16 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Intimpa, Arbol del Sol</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Tsame Añabaitantyaro Añane" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/TsameAñabaitantyaroAñane.webp" alt="Libro 17 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+17'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1PA8b84yjO5PAyXkxqW_C3cOlNAiKNz2o/view?usp=drive_link','Libro 17 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Tsame Añabaitantyaro Añane</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El zorro Enamorado de la Luna" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/elzorroenamoradodelaluna.webp" alt="Libro 18 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+18'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1QosIEuXiN7LvxGs5gVWsdDx6jxR0CKdH/view?usp=drive_link','Libro 18 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El zorro Enamorado de la Luna</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Pastorcillo Mentiroso" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/ElPastorcilloMentiroso.webp" alt="Libro 19 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+19'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1R0EYMqKkL9Ehpa4RideTyzx_LrPqDMWJ/view?usp=drive_link','Libro 19 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Pastorcillo Mentiroso</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Jarawa" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Jarawa.webp" alt="Libro 20 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+20'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1ZPpgEb9Ecve178--4zjzSsKD0BJ2AtYO/view?usp=drive_link','Libro 20 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Jarawa</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Tradiciones orales de las naciones shipibo y uitoto" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Tradicionesoralesdelasnacionesshipiboyuitoto.webp" alt="Libro 21 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+21'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1ZSWuJBHgwayFSVgU04mCWovcEFxDsKYw/view?usp=drive_link','Libro 21 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Tradiciones orales de las naciones shipibo y uitoto</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Mi papá es un superhéroe" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/Mipapáesunsuperhéroe.webp" alt="Libro 22 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+22'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1_SFWAqhZDH1va0m7Ehx7UqRz6w7nMZ52/view?usp=drive_link','Libro 22 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>"Mi Papá es un Superhéroe</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Plantas para Cuidar Nuestra Salud" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/PlantasparaCuidarNuestraSalud.webp" alt="Libro 23 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+23'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1bDY0FmZHNL65JjyyIF5-sHY3gBJ-7xAC/view?usp=drive_link','Libro 23 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Plantas para Cuidar Nuestra Salud</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Pájaro Paucar" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/ElPájaroPaucar.webp" alt="Libro 24 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+24'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1iYVEfJ0D78yn3ZOwWVsCNIx5avs8xKeq/view?usp=drive_link','Libro 24 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Pájaro Paucar</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Muqui" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/ElMuqui.webp" alt="Libro 25 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+25'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1mHfM9P6L05WBJmF_qwHr44v7JNPf0Ywv/view?usp=drive_link','Libro 25 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Muqui</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Fiesta de las Tanta Wawas" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/LaFiestadelasTantaWawas.webp" alt="Libro 26 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+26'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1rD1B_2nsoP0b5-LgW5qiS6bq-wwIhZ9d/view?usp=drive_link','Libro 26 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Fiesta de las Tanta Wawas</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Antes muy Antes" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/AntesmuyAntes.webp" alt="Libro 27 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+27'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1tnssxZB_LEaEH3xUG7-TkdPAPwCG0Y-r/view?usp=drive_link','Libro 27 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Antes muy Antes</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Viaje al Cielo" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/ElViajealCielo.webp" alt="Libro 28 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+28'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1vZNKtDieoUmXMzFE4Jg0xLJ8Qhipi_AL/view?usp=drive_link','Libro 28 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Viaje al Cielo</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="DEL SIGLO AL MINUTO" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/DELSIGLOALMINUTO.webp" alt="Libro 29 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+29'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1w_UV_VBDuCgDfqJ-UbgVXd5kpajS_1TY/view?usp=drive_link','Libro 29 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>DEL SIGLO AL MINUTO</h3><span>Tercer grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Mi Mantita Linda" data-grade="3">
+            <div class="book-cover">
+                <img src="img/libros/MiMantitaLinda.webp" alt="Libro 30 Tercero" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+30'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1y1I-yIFEC14q8visgsaqe1swNtYoPa6x/view?usp=drive_link','Libro 30 — Tercero','Tercer grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Mi Mantita Linda</h3><span>Tercer grado</span></div>
+        </article>
+
+    </div>
+</section>
+
+<!-- ==================================================
+     CUARTO GRADO — 26 LIBROS
+================================================== -->
+<section class="grade-section" id="grado4">
+    <div class="grade-heading">
+        <div><span class="section-label">CUARTO GRADO</span><h2>4.º de <span>Primaria</span></h2></div>
+        <span class="book-count">26 libros</span>
+    </div>
+    <div class="books-grid">
+
+        <article class="book-card" data-title="La boca como nido" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/Labocacomonido.webp" alt="Libro 01 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+01'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/11Sn3Xy_1Xx-1ul1fT7iZ53vQUeOPkfF_/view?usp=drive_link','Libro 01 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La boca como nido</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Muqui" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/ElMuqui.webp" alt="Libro 02 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+02'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/129GH7X9dA0QqzqrO35ufwzlCYw-zoAIs/view?usp=drive_link','Libro 02 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Muqui</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Alfarero Rebelde" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/ElAlfareroRebelde.webp" alt="Libro 03 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+03'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/12lECFKBOJS4wN03Q0e82l_fGu1fYQtiy/view?usp=drive_link','Libro 03 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Alfarero Rebelde</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Bruja Maruja" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/LaBrujaMaruja.webp" alt="Libro 04 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+04'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/15Dvi9_Tt4XKqfaMrdeUNvTGhll7JJMnB/view?usp=drive_link','Libro 04 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Bruja Maruja</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Nunash la Bella Durmiente" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/NunashlaBellaDurmiente.webp" alt="Libro 05 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+05'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/18MScL7RTpSK7AKt5V3x4UUWpmbLgXS-n/view?usp=drive_link','Libro 05 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Nunash la Bella Durmiente</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Tsimeripe Obira Noipatsite" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/TsimeripeObiraNoipatsite.webp" alt="Libro 06 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+06'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Bp5IzO9mex3gmtHl09n2r15TCDO32-qy/view?usp=drive_link','Libro 06 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Tsimeripe Obira Noipatsite</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Balance Trágico de Marzo el Fenomeno de el Niño en Piura" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/ElBalanceTrágicodeMarzoelFenomenodeelNiñoPiura.webp" alt="Libro 07 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+07'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1CgbM1JRDJ04srgq8DvK_-Ud9gaxRfeC7/view?usp=drive_link','Libro 07 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Balance Trágico de Marzo el Fenómeno de el Niño en Piura</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Oasis de Huacachina" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/ElOasisdeHuacachina.webp" alt="Libro 08 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+08'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1DiZ6oK3oq0u6fPIUPMCVbDvLswtHSMMR/view?usp=drive_link','Libro 08 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Oasis de Huacachina</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Mari Joni Jato Ninkamati" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/MariJoniJatoNinkamati.webp" alt="Libro 09 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+09'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1DtBn1aEbacuRGgAueAZ4P1Pl9H8t_ZTp/view?usp=drive_link','Libro 09 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Mari Joni Jato Ninkamati</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Caracol y el Rosal" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/ElCaracolyelRosal.webp" alt="Libro 10 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+10'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1KM75bawPa2ajLUkSsxBBUy_lPQAiZPKl/view?usp=drive_link','Libro 10 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Caracol y el Rosal</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Tradiciones orales de las naciones shipibo y uitoto" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/Tradicionesoralesdelasnacionesshipiboyuitoto.webp" alt="Libro 11 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+11'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1LHVeAFxf-C79EGkwGdb4tAKVYqm8C7uP/view?usp=drive_link','Libro 11 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Tradiciones orales de las naciones Shipibo y Uitoto</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Lari Lari" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/LariLari.webp" alt="Libro 12 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+12'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1LpOx9c2OPdKa2CAl_lC60cowsVPfo-nY/view?usp=drive_link','Libro 12 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>LariLari</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Oshta y el Duende" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/OshtayelDuende.webp" alt="Libro 13 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+13'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1OIOZVqZRytvSCJGDFA_XAugMi3LH6qR0/view?usp=drive_link','Libro 13 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Oshta y el Duende</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Paco Yunque" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/PacoYunque.webp" alt="Libro 14 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+14'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1RmvwcCd-ef88jvnOCQx3awcz190vVYaZ/view?usp=drive_link','Libro 14 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Paco Yunque</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Las Megalopolis" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/LasMegalopolis.webp" alt="Libro 15 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+15'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1TTZECruIkgUrbzQ_j5r6AHO3GSVkaKuz/view?usp=drive_link','Libro 15 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Las Megalópolis</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Viaje al Cielo" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/ElViajealCielo.webp" alt="Libro 16 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+16'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1YizSUaPa3VJLPuqSlABhcmHX63HnPWEK/view?usp=drive_link','Libro 16 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Viaje al Cielo</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Cuentos de la selva" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/Cuentosdelaselva.webp" alt="Libro 17 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+17'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1_iu6nsiXvTYPL4Ir-XS8rupnBLyifdeA/view?usp=drive_link','Libro 17 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Cuentos de la selva</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Agua en el Planeta Tierra" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/ElAguaenelPlanetaTierra.webp" alt="Libro 18 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+18'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1aWv-8kY2hO9OlIIP0pK1se3-PqT5U5hl/view?usp=drive_link','Libro 18 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Agua en el Planeta Tierra</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El zorro enamorado de la luna" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/elzorroenamoradodelaluna.webp" alt="Libro 19 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+19'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1aaoEYu4PLQW7FJbt0-NXeRSZGcGrW0RN/view?usp=drive_link','Libro 19 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El zorro enamorado de la luna</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Aymara jarawi" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/Aymarajarawi.webp" alt="Libro 20 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+20'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1dKOERsQc2oPUBoNXzhWw83s9wIdTts1B/view?usp=drive_link','Libro 20 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Aymara Jarawi</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Festividad del Señor de los milagros" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/LaFestividaddelSeñordelosmilagros.webp" alt="Libro 21 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+21'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1epx9slR4QIxknD0i3UqYYxtJLKN4SE8F/view?usp=drive_link','Libro 21 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Festividad del Señor de los Milagros</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Intimpa, Arbol del So" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/IntimpaArboldelSol.webp" alt="Libro 22 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+22'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1hBV5DhoY9-4pn8UhWfgHuAoC8h9EeXtA/view?usp=drive_link','Libro 22 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Intimpa, Arbol del Sol</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Sashsawata" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/Sashsawata.webp" alt="Libro 23 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+23'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1hv_MqcBIaK9cxJYkIISKk2dANvOMdhpU/view?usp=drive_link','Libro 23 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Sashsawata</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Puya" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/LaPuya.webp" alt="Libro 24 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+24'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1j9S6VvXM9YhptsICzxL53N5g5TTGQHSK/view?usp=drive_link','Libro 24 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Puya</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La visita a la ciudad de Caral" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/LavisitaalaciudaddeCaral.webp" alt="Libro 25 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+25'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1xez2V2_-r0gyWNdoVhOlkU4NepUhvDAP/view?usp=drive_link','Libro 25 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La visita a la ciudad de Caral</h3><span>Cuarto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Llaqtaypa Kawsayninkuna" data-grade="4">
+            <div class="book-cover">
+                <img src="img/libros/LlaqtaypaKawsayninkuna.webp" alt="Libro 26 Cuarto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+26'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1zGUjDFB1Y_9WVAoq3yeLEO1lzEGpuRoA/view?usp=drive_link','Libro 26 — Cuarto','Cuarto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Llaqtaypa Kawsayninkuna</h3><span>Cuarto grado</span></div>
+        </article>
+
+    </div>
+</section>
+
+<!-- ==================================================
+     QUINTO GRADO — 40 LIBROS
+================================================== -->
+<section class="grade-section" id="grado5">
+    <div class="grade-heading">
+        <div><span class="section-label">QUINTO GRADO</span><h2>5.º de <span>Primaria</span></h2></div>
+        <span class="book-count">40 libros</span>
+    </div>
+    <div class="books-grid">
+
+        <article class="book-card" data-title="Orientaciones para Elaborar una Cartelera Electoral" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/OrientacionesparaElaborarunaCarteleraElectoral.webp" alt="Libro 01 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+01'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/114IUwUA7Bo1820NVTrTTRJszGE8V90QZ/view?usp=drive_link','Libro 01 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Orientaciones para Elaborar una Cartelera Electoral</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Yusa" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Yusa.webp" alt="Libro 02 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+02'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/12Ew8vOzV7F7517BpLMCtS1DzoVlg0o09/view?usp=drive_link','Libro 02 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Yusa</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El cuento que perdió su título" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Elcuentoqueperdiósutítulo.webp" alt="Libro 03 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+03'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/12p3NG7EmFxjnSpaKFGM_t7MPerZtnsD_/view?usp=drive_link','Libro 03 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El cuento que perdió su título</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 04 — Quinto" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/libro_04_quinto.webp" alt="Libro 04 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+04'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/17bpiP4XpbtSewWROVQmsuK1BkC0vKIhz/view?usp=drive_link','Libro 04 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 04 — Quinto</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La televisión: la historia del movimiento de la imagen" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Latelevisiónlahistoriadelmovimientodelaimagen.webp" alt="Libro 05 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+05'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/184c1KZgla_9NtQUo_YCTCeUlrrwRdLgz/view?usp=drive_link','Libro 05 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La televisión: la historia del movimiento de la imagen</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="José Abelardo Quiñones Gonzales" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/JoséAbelardoQuiñonesGonzales.webp" alt="Libro 06 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+06'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/18FuOzI9kKpnw_DV71VCnuPGIGyUB0kG1/view?usp=drive_link','Libro 06 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>José Abelardo Quiñones Gonzales</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Caracol y el Rosal" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/ElCaracolyelRosal.webp" alt="Libro 07 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+07'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Br-n68gM-icyFv2oEFpIVaUYJ4iDjFzQ/view?usp=drive_link','Libro 07 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Caracol y el Rosal</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El valle del Alto Mayo" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/ElvalledelAltoMayo.webp" alt="Libro 08 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+08'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1By2jESFD6ENFdeH_y8DTiP2azlWJaIwb/view?usp=drive_link','Libro 08 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>LEl valle del Alto Mayo</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Huk Kutis Kaq Kasqa" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/HukKutisKasqa2.webp" alt="Libro 09 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+09'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1CaulFw3wABZLoTiQdwNfBvZjPHze5Bmn/view?usp=drive_link','Libro 09 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Huk Kutis Kaq Kasqa</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Piel Humeda" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/PielHumeda.webp" alt="Libro 10 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+10'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1I_tV9lqRqH97bvC2BBm-MZLBsm_QwmYj/view?usp=drive_link','Libro 10 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Piel Húmeda</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Oso silvestre del Perú:" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/OsosilvestredelPerú.webp" alt="Libro 11 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+11'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1IycZBqXmICeIVLigVAFlJq5eFDVYtnNv/view?usp=drive_link','Libro 11 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Oso silvestre del Perú:</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Momento de Conocernos" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/ElMomentodeConocernos.webp" alt="Libro 12 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+12'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1LCe_K6APTqlmwiNeTR-JmAtAu4y_WO0G/view?usp=drive_link','Libro 12 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Momento de Conocernos</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Leyenda del Chogui" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/LaLeyendadelChogui.webp" alt="Libro 13 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+13'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Mw3DE0SSAuMChhmPCjIO39Bm_4syCTG0/view?usp=drive_link','Libro 13 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Leyenda del Chogui</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Cholito y Amazonita" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/CholitoyAmazonita.webp" alt="Libro 14 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+14'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1N-2yxohsZJcyY6_j2ihCSDj7loeCkGPJ/view?usp=drive_link','Libro 14 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Cholito y Amazonita</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Algo me está Sucediendo" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/AlgomeestáSucediendo.webp" alt="Libro 15 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+15'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1NLGqWoPgZkuH6GYf9g7bMbNJL4CKCCvR/view?usp=drive_link','Libro 15 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Algo me está Sucediendo</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Alfarero Rebelde" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/ElAlfareroRebelde.webp" alt="Libro 16 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+16'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1OKFb1HW6n-7huWCQWVOzA2WWkTSFToeq/view?usp=drive_link','Libro 16 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Alfarero Rebelde</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La Bella Durmiente" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/LaBellaDurmiente.webp" alt="Libro 17 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+17'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1OXYjEQN-V3AYaSN9jT8EIUb1ZD8r1rX8/view?usp=drive_link','Libro 17 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Bella Durmiente</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Hay 64 especies en peligro de extinción en el Perú" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Hay64especiesenpeligrodeextinciónenelPerú.webp" alt="Libro 18 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+18'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1P6S9fWL8EYyeU_C9wnG_IxOqwabkKQQe/view?usp=drive_link','Libro 18 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Hay 64 especies en peligro de extinción en el Perú</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La niña de la lámpara azul" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Laniñadelalámparaazul.webp" alt="Libro 19 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+19'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1QMXOTPeKjCHO3Il7SnnzvmtiP2AqgSxQ/view?usp=drive_link','Libro 19 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La niña de la lámpara azul</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El mono choro en la lista de primates en mayor peligro en el mundo" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Elmonochoroenlalistadeprimatesenmayorpeligroenelmundo.webp" alt="Libro 20 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+20'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1S3dmQBICePYAvPlT3Pm5WMoRGFKVKYq9/view?usp=drive_link','Libro 20 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El mono choro en la lista de primates en mayor peligro en el mundo</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Día del Niño" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/DíadelNiño.webp" alt="Libro 21 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+21'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Tueg8QtWH2phXMxFSS-P17YxlEID0y0V/view?usp=drive_link','Libro 21 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Día del Niño</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La cultura awajún y el consumo sostenible" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Laculturaawajúnyelconsumosostenible.webp" alt="Libro 22 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+22'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1UYaUZYVLp9gEYhWslhtjidXKd4H9UTqb/view?usp=drive_link','Libro 22 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La cultura awajún y el consumo sostenible</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Sashsawata" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Sashsawata2.webp" alt="Libro 23 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+23'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1VIs7qgZtHVS3VqjgOF0aSklDSfxzF243/view?usp=drive_link','Libro 23 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Sashsawata</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Lari Lari" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/LariLari.webp" alt="Libro 24 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+24'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Wr_m4SVNQJlN61wTFAtcLeqAyJ1glZi-/view?usp=drive_link','Libro 24 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Lari Lari</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Pepe, Pepo y Pipo y la Laguna Misteriosa" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/PepePepoyPipoylaLagunaMisteriosa.webp" alt="Libro 25 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+25'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1YMreYmSj8L9SOPGD_GxbWS56Bar2X1u_/view?usp=drive_link','Libro 25 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Pepe, Pepo y Pipo y la Laguna Misteriosa</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Venadito de los montes" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Venaditodelosmontes.webp" alt="Libro 26 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+26'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1YU0Ho1AgHj9RKGpKURWMCIZkagkfoUha/view?usp=drive_link','Libro 26 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Venadito de los montes</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 27 — Quinto" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/.webp" alt="Libro 27 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+27'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1_LuXqF_70QLujnc3FN8MHQcxHDKNzr_m/view?usp=drive_link','Libro 27 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 27 — Quinto</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Las Abejas" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/LasAbejas.webp" alt="Libro 28 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+28'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1aW2yic_gyxxHfhC4lpYMZlDZG8QvPHwM/view?usp=drive_link','Libro 28 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Las Abejas</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Cuentos de la selva" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Cuentosdelaselva.webp" alt="Libro 29 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+29'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1aX64aTQ_oBa1T1F84Ynv1ITu45oORn9E/view?usp=drive_link','Libro 29 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Cuentos de la selva</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Markasana kunaymana sarnaqatasa" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Markasanakunaymanasarnaqatasa.webp" alt="Libro 30 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+30'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1eyYd1fI1wvSFNxPoRg9XDiUx6bP2sAxw/view?usp=drive_link','Libro 30 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Markasana kunaymana sarnaqatasa</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Oshta y el Duende" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/OshtayelDuende.webp" alt="Libro 31 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+31'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1fMKFLHCdL3yFuWFRauRAg0bfsj0DPVfE/view?usp=drive_link','Libro 31 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Oshta y el Duende</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Paco Yunque" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/PacoYunque.webp" alt="Libro 32 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+32'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1i2Sv2D7gumyKRDqpyxexMT5NkBV_we4P/view?usp=drive_link','Libro 32 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Paco Yunque</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Que son las Legumbres" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/QuesonlasLegumbres.webp" alt="Libro 33 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+33'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1iaTzY1CIvmW3ScVUfkqIGWNqhyl1Jkpu/view?usp=drive_link','Libro 33 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>¿Que son las Legumbres?</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Machu Picchu" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/MachuPicchu.webp" alt="Libro 34 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+34'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1l80ynIeqP9p8KFKqKYdc7S3qi7C9FUjm/view?usp=drive_link','Libro 34 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Machu Picchu</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Parque Nacional Huacarán" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/ParqueNacionalHuacarán.webp" alt="Libro 35 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+35'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1le38jse6k_7PLh4VJku5wBnGpBtAFqNV/view?usp=drive_link','Libro 35 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Parque Nacional Huacarán</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Roald Dahl" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/RoaldDahl.webp" alt="Libro 36 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+36'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1sUo9Uzfri79GYq-MrRNzuWnTZJf7d9eG/view?usp=drive_link','Libro 36 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Roald Dahl</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Tradiciones orales de las naciones shipibo y uitoto" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/Tradicionesoralesdelasnacionesshipiboyuitoto.webp" alt="Libro 37 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+37'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1t12wVT1hKijOJQb3Wp8mrklZsaMA1Cv9/view?usp=drive_link','Libro 37 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Tradiciones orales de las naciones shipibo y uitoto</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Viaje al Cielo" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/ElViajealCielo.webp" alt="Libro 38 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+38'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1xoWFr1pxiHBjWU53rX_hHS-SZ2sDU4xk/view?usp=drive_link','Libro 38 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Viaje al Cielo</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La leyenda de los colibríes de Nasca" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/LaleyendadeloscolibríesdeNasca.webp" alt="Libro 39 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+39'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1yEmEAb-UZNuOaZ0ou0IgQIsdo7CPPzj-/view?usp=drive_link','Libro 39 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La leyenda de los colibríes de Nasca</h3><span>Quinto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="La diversidad cultural del Perú a diversidad cultural del Perú cuestión de reflexión" data-grade="5">
+            <div class="book-cover">
+                <img src="img/libros/LadiversidadculturaldelPerúadiversidadculturaldelPerúcuestióndereflexión.webp" alt="Libro 40 Quinto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/0a2a4a/e2c76d?text=LIBRO+40'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1zXBO-W3Ts4OxnXcXxyIOT5iZPFVdcuMY/view?usp=drive_link','Libro 40 — Quinto','Quinto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La diversidad cultural del Perú a diversidad cultural del Perú cuestión de reflexión</h3><span>Quinto grado</span></div>
+        </article>
+
+    </div>
+</section>
+
+<!-- ==================================================
+     SEXTO GRADO — 30 LIBROS
+================================================== -->
+<section class="grade-section" id="grado6">
+    <div class="grade-heading">
+        <div><span class="section-label">SEXTO GRADO</span><h2>6.º de <span>Primaria</span></h2></div>
+        <span class="book-count">30 libros</span>
+    </div>
+    <div class="books-grid">
+
+        <article class="book-card" data-title="La Libertad" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/LaLibertadproponenreforestaralgarrobosyprotegeralcañánanimalenextinción.webp" alt="Libro 01 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+01'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1-A_yhgRtjLONdMb99p1MvlZuaURsa0YE/view?usp=drive_link','Libro 01 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>La Libertad</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Escribimos textos argumentativos" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/Escribimostextosargumentativosparagenerarreflexión.webp" alt="Libro 02 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+02'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/113XbneyaMx1Zh_fUptSHi-2WxAHbLKbI/view?usp=drive_link','Libro 02 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Escribimos textos argumentativos</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Abejas en Peligro de Extincion" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/AbejasenPeligrodeExtincion.webp" alt="Libro 03 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+03'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/124RHFqDC1TZzpC6vzIsVo0Ox67pa8emk/view?usp=drive_link','Libro 03 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Abejas en Peligro de Extinción</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Alfarero Rebelde" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/ElAlfareroRebelde.webp" alt="Libro 04 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+04'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/13KWXfmpL0QX-hC7WfnX5mGTlQUuHzu3b/view?usp=drive_link','Libro 04 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Alfarero Rebelde</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="El Viaje al Cielo" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/ElViajealCielo.webp" alt="Libro 05 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+05'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/17K2ArrHqatotVG5OiOncvWes8l8vGoiB/view?usp=drive_link','Libro 05 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>El Viaje al Cielo</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 06 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_06_sexto.webp" alt="Libro 06 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+06'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/18wLLV4ZXEPuscy-3PhNVpysm6ENkzLC1/view?usp=drive_link','Libro 06 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 06 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 07 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_07_sexto.webp" alt="Libro 07 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+07'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1D--OOMn-Gy9QPEF1ebhJkxxElcnqgOsm/view?usp=drive_link','Libro 07 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 07 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 08 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_08_sexto.webp" alt="Libro 08 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+08'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1EBziiDvEWIgRC7xxravfIipk0pE4Ob1B/view?usp=drive_link','Libro 08 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 08 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Oshta y el Duende" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/OshtayelDuende.webp" alt="Libro 09 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+09'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1FfBmq9z6zRR33ExEltO5zexLo8nAtXRi/view?usp=drive_link','Libro 09 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Oshta y el Duende</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 10 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_10_sexto.webp" alt="Libro 10 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+10'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1PFnuqktg8RkeAozU1eWHGjQu_NG8nMOU/view?usp=drive_link','Libro 10 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 10 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 11 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_11_sexto.webp" alt="Libro 11 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+11'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1QJpl4uuDKJz8JmCzsAfvvQ9LVeF9omvt/view?usp=drive_link','Libro 11 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 11 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 12 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_12_sexto.webp" alt="Libro 12 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+12'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1TstS9IGXK2xZklreXGyaM32mXK0VR8WG/view?usp=drive_link','Libro 12 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 12 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 13 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_13_sexto.webp" alt="Libro 13 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+13'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1U7nEVHnJgHIac5bJaDNDPqqIB8UfdKjA/view?usp=drive_link','Libro 13 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 13 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 14 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_14_sexto.webp" alt="Libro 14 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+14'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1Y_P_N9-sFEmdYn69K0PD66bi0CzN1dER/view?usp=drive_link','Libro 14 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 14 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 15 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_15_sexto.webp" alt="Libro 15 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+15'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1aRuwCAyEk8gXzVH1yR0ru0YC4F70ggZ_/view?usp=drive_link','Libro 15 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 15 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 16 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_16_sexto.webp" alt="Libro 16 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+16'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1gUV-UbpsrEEzu_37pvdHk5GTiZZqMBeK/view?usp=drive_link','Libro 16 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 16 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 17 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_17_sexto.webp" alt="Libro 17 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+17'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1gc8OnTmzFYQxUuCWUbfV0RPJ8FrjEEez/view?usp=drive_link','Libro 17 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 17 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 18 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_18_sexto.webp" alt="Libro 18 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+18'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1gnKLtWaqgvSKueWDwgOfnZH0l8AIdn2g/view?usp=drive_link','Libro 18 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 18 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 19 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_19_sexto.webp" alt="Libro 19 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+19'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1hibKWSdeZ-792P3OGvoQS0i8Ioe7r7pb/view?usp=drive_link','Libro 19 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 19 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 20 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_20_sexto.webp" alt="Libro 20 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+20'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1n86wcm4yOeIHFR0ZYmppFWwuQs77DbwI/view?usp=drive_link','Libro 20 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 20 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 21 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_21_sexto.webp" alt="Libro 21 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+21'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1n9DYbO5mvGSALYfWmVNVCQR4UUS9KQNG/view?usp=drive_link','Libro 21 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 21 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 22 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_22_sexto.webp" alt="Libro 22 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+22'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1o2Fa5sBCIf20SfPX4t-goq8YsLCjEJSU/view?usp=drive_link','Libro 22 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 22 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 23 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_23_sexto.webp" alt="Libro 23 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+23'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1oWTc0gpKgr-9Q6suqCyyeF2H5TPs_Fx0/view?usp=drive_link','Libro 23 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 23 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 24 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_24_sexto.webp" alt="Libro 24 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+24'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1qRI-5qh8vw32FQgkBsrpqszx8cSgKf4B/view?usp=drive_link','Libro 24 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 24 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 25 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_25_sexto.webp" alt="Libro 25 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+25'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1sDXJH_FhNXd6tZkQ6eKzjKIF7vTcVAnk/view?usp=drive_link','Libro 25 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 25 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 26 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_26_sexto.webp" alt="Libro 26 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+26'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1tw5klB16iN6vO81mgUv7Q8T0Rd8G_VXb/view?usp=drive_link','Libro 26 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 26 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 27 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_27_sexto.webp" alt="Libro 27 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+27'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1u2HupCccb-A7XuH1wLvoEdNGcr1fsMyE/view?usp=drive_link','Libro 27 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 27 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 28 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_28_sexto.webp" alt="Libro 28 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+28'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1voaM3GVjQpitE2jJaeBylYG4tj1s7r4J/view?usp=drive_link','Libro 28 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 28 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 29 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_29_sexto.webp" alt="Libro 29 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+29'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1xqrm_LdiXuX9lEf6MckjcacqGP6wfroL/view?usp=drive_link','Libro 29 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 29 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+        <article class="book-card" data-title="Libro 30 — Sexto" data-grade="6">
+            <div class="book-cover">
+                <img src="img/libros/libro_30_sexto.webp" alt="Libro 30 Sexto" loading="lazy"
+                     onerror="this.onerror=null;this.src='https://placehold.co/500x700/1a3f62/e2c76d?text=LIBRO+30'">
+                <div class="book-overlay">
+                    <button class="read-button" onclick="abrirLibro('https://drive.google.com/file/d/1ya-Lyhm_pNz12SaNupEH37EblnCQWexY/view?usp=drive_link','Libro 30 — Sexto','Sexto grado')">
+                        <i class="fas fa-book-open"></i> Leer libro
+                    </button>
+                </div>
+            </div>
+            <div class="book-info"><h3>Libro 30 — Sexto</h3><span>Sexto grado</span></div>
+        </article>
+
+    </div>
+</section>
+
+<!-- SIN RESULTADOS -->
+<div class="no-results" id="noResults">
+    <i class="fas fa-book-open"></i>
+    <h3>No encontramos ese libro</h3>
+    <p>Prueba buscando con otro nombre.</p>
+</div>
+
+</div>
+</main>
+
+<!-- INFORMACIÓN -->
+<section class="information" id="informacion">
+    <div class="container">
+        <div class="information-card">
+            <div class="information-icon"><i class="fas fa-book-reader"></i></div>
+            <div>
+                <span class="section-label">BIBLIOTECA VIRTUAL</span>
+                <h2>Aprende desde cualquier lugar</h2>
+                <p>Nuestra biblioteca virtual permite acceder a los libros educativos desde una computadora, tablet o teléfono celular.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL -->
+<div class="book-modal" id="bookModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div>
+                <span id="modalGrade">Biblioteca Virtual</span>
+                <h2 id="modalTitle">Libro</h2>
+            </div>
+            <button class="modal-close" onclick="cerrarLibro()" aria-label="Cerrar">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+        <div class="pdf-container">
+            <iframe id="pdfViewer" src="" title="Lector de libro" allow="autoplay"></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="main-footer">
+    <div class="container footer-grid">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <div class="logo-circle">1923</div>
+                <div class="logo-text"><strong>Javier Pérez</strong><span>de Cuéllar</span></div>
+            </div>
+            <p>Institución Educativa Primaria con más de 100 años de trayectoria formando niños y niñas en Yauli, Junín.</p>
+            <div class="footer-social">
+                <a href="https://www.facebook.com/31166JPCYauliJunin?locale=es_LA" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h4>Navegación</h4>
+            <a href="index.html#inicio">Inicio</a>
+            <a href="index.html#historia">Historia</a>
+            <a href="index.html#niveles">Primaria</a>
+            <a href="index.html#infraestructura">Infraestructura</a>
+        </div>
+        <div class="footer-column">
+            <h4>Comunidad</h4>
+            <a href="index.html#actividades">Actividades</a>
+            <a href="index.html#galeria">Galería</a>
+            <a href="index.html#contacto">Contacto</a>
+            <a href="https://www.facebook.com/31166JPCYauliJunin?locale=es_LA" target="_blank">Facebook</a>
+        </div>
+        <div class="footer-column">
+            <h4>Biblioteca</h4>
+            <a href="#grado1">1.º Primaria</a>
+            <a href="#grado2">2.º Primaria</a>
+            <a href="#grado3">3.º Primaria</a>
+            <a href="#grado4">4.º Primaria</a>
+            <a href="#grado5">5.º Primaria</a>
+            <a href="#grado6">6.º Primaria</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>© <span id="year"></span> IE Javier Pérez de Cuéllar – 103 años de educación. Diseñado por Maverick © 2026.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="js/biblioteca.js"></script>
+</body>
+</html>

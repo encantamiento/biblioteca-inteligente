@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — I.E. Javier Pérez de Cuéllar</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/admin-panel.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-icon"><i class="fas fa-lock"></i></div>
+    <h1>Panel de Administración</h1>
+    <p>I.E. Javier Pérez de Cuéllar</p>
+    <form id="loginForm">
+      <input type="password" id="loginPassword" placeholder="Contraseña" autocomplete="current-password" required>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+        <i class="fas fa-sign-in-alt"></i> Ingresar
+      </button>
+      <small id="loginError" class="login-error"></small>
+    </form>
+    <a href="../index.html" class="back-link" style="color:var(--admin-primary);margin-top:16px;display:inline-block;">
+      <i class="fas fa-arrow-left"></i> Volver al sitio
+    </a>
+   <!-- <p class="login-hint">Contraseña por defecto: <code>jpc2026</code></p>  -->
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div id="adminApp" class="admin-layout" style="display:none;">
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <img src="../img/logo.webp" alt="Logo" class="sidebar-logo" onerror="this.style.display='none'">
+      <h2>Panel Admin</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#general" class="nav-link active" data-section="general"><i class="fas fa-school"></i> General</a>
+      <a href="#hero" class="nav-link" data-section="hero"><i class="fas fa-image"></i> Hero</a>
+      <a href="#presentation" class="nav-link" data-section="presentation"><i class="fas fa-bullseye"></i> Presentación</a>
+      <a href="#history" class="nav-link" data-section="history"><i class="fas fa-clock"></i> Historia</a>
+      <a href="#gallery" class="nav-link" data-section="gallery"><i class="fas fa-images"></i> Galería</a>
+      <a href="#flyers" class="nav-link" data-section="flyers"><i class="fas fa-scroll"></i> Flyers</a>
+      <a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-phone"></i> Contacto</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al sitio</a>
+      <button id="btnChangePass" class="btn-sidebar"><i class="fas fa-key"></i> Cambiar contraseña</button>
+      <button id="btnLogout" class="btn-sidebar danger"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-header">
+      <h1><i class="fas fa-cogs"></i> Administración del Sitio</h1>
+      <div class="header-actions">
+        <button id="btnSave" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+        <button id="btnReset" class="btn btn-danger"><i class="fas fa-undo"></i> Restablecer</button>
+      </div>
+    </header>
+
+    <!-- GENERAL -->
+    <section id="general" class="admin-section active">
+      <h2><i class="fas fa-school"></i> Información General</h2>
+      <div class="form-grid">
+        <div class="form-group"><label>Nombre de la escuela</label><input type="text" id="schoolName"></div>
+        <div class="form-group"><label>Ubicación</label><input type="text" id="schoolLocation"></div>
+        <div class="form-group"><label>Año de fundación</label><input type="number" id="foundedYear"></div>
+        <div class="form-group"><label>Año actual</label><input type="number" id="currentYear"></div>
+        <div class="form-group"><label>Años de actividad</label><input type="number" id="yearsActivity"></div>
+        <div class="form-group"><label>Lema</label><input type="text" id="schoolMotto"></div>
+      </div>
+    </section>
+
+    <!-- HERO -->
+    <section id="hero" class="admin-section">
+      <h2><i class="fas fa-image"></i> Sección Hero</h2>
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label>Imagen de fondo</label>
+          <input type="text" id="heroImage" placeholder="img/hero/escuela.webp">
+          <input type="file" accept="image/*" id="heroImageFile" hidden>
+          <label for="heroImageFile" class="btn-upload"><i class="fas fa-upload"></i> O subir desde archivo</label>
+          <img id="heroImagePreview" class="img-preview" style="display:none;">
+          <small>Ruta relativa o sube un archivo (máx. recomendado 800KB)</small>
+        </div>
+        <div class="form-group"><label>Título</label><input type="text" id="heroTitle"></div>
+        <div class="form-group"><label>Subtítulo</label><input type="text" id="heroSubtitle"></div>
+      </div>
+
+      <h3>Estadísticas</h3>
+      <div id="statsContainer" class="stats-list"></div>
+      <button id="addStat" class="btn btn-outline"><i class="fas fa-plus"></i> Agregar estadística</button>
+    </section>
+
+    <!-- PRESENTACIÓN -->
+    <section id="presentation" class="admin-section">
+      <h2><i class="fas fa-bullseye"></i> Presentación</h2>
+      <div class="form-group"><label>Misión</label><textarea id="mission" rows="4"></textarea></div>
+      <div class="form-group"><label>Visión</label><textarea id="vision" rows="4"></textarea></div>
+    </section>
+
+    <!-- HISTORIA -->
+    <section id="history" class="admin-section">
+      <h2><i class="fas fa-clock"></i> Línea de Tiempo</h2>
+      <div id="timelineContainer" class="timeline-list"></div>
+      <button id="addTimeline" class="btn btn-outline"><i class="fas fa-plus"></i> Agregar evento</button>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="gallery" class="admin-section">
+      <h2><i class="fas fa-images"></i> Galería de Imágenes</h2>
+      <div id="galleryContainer" class="gallery-list"></div>
+      <button id="addGallery" class="btn btn-outline"><i class="fas fa-plus"></i> Agregar imagen</button>
+    </section>
+
+    <!-- FLYERS (NUEVO) -->
+    <section id="flyers" class="admin-section">
+      <h2><i class="fas fa-scroll"></i> Flyers / Carteles</h2>
+      <p style="color:#64748b;font-size:0.9rem;margin-bottom:16px;">
+        Sube los flyers del aniversario, matrícula, eventos y logros. Se mostrarán en la sección "Aniversario" del sitio.
+      </p>
+      <div id="flyersContainer" class="flyers-list"></div>
+      <button id="addFlyer" class="btn btn-outline"><i class="fas fa-plus"></i> Agregar flyer</button>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contact" class="admin-section">
+      <h2><i class="fas fa-phone"></i> Información de Contacto</h2>
+      <div class="form-grid">
+        <div class="form-group"><label>Dirección</label><input type="text" id="contactAddress"></div>
+        <div class="form-group"><label>Teléfono</label><input type="text" id="contactPhone"></div>
+        <div class="form-group"><label>Correo</label><input type="email" id="contactEmail"></div>
+        <div class="form-group"><label>Horario</label><input type="text" id="contactHours"></div>
+        <div class="form-group full-width"><label>Facebook</label><input type="url" id="contactFacebook"></div>
+      </div>
+    </section>
+
+    <div id="toast" class="toast">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMsg">Cambios guardados</span>
+    </div>
+  </main>
+</div>
+
+<script src="../js/content-data.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  // Preview hero
+  document.getElementById('heroImageFile').addEventListener('change', function() {
+    const file = this.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById('heroImage').value = e.target.result;
+      const p = document.getElementById('heroImagePreview');
+      p.src = e.target.result; p.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+<script src="admin-panel.js"></script>
+</body>
+</html>

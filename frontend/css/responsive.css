@@ -1,0 +1,235 @@
+/* ==================================================
+   RESPONSIVE – TABLET Y MÓVIL
+================================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .presentation-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .infra-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .activities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .timeline-item.left,
+    .timeline-item.right {
+        width: 50%;
+        padding-left: 40px;
+        padding-right: 0;
+        text-align: left;
+    }
+    .timeline-item.left .timeline-dot,
+    .timeline-item.right .timeline-dot {
+        left: -22px;
+    }
+    .timeline-line {
+        left: 0;
+    }
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-flyer-card {
+        width: 260px;
+    }
+    .hero-stats {
+        justify-content: center;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+/* Móvil grande */
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block;
+    }
+    nav {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        border-top: 3px solid var(--gold);
+        animation: menuSlideDown 0.3s ease;
+    }
+    @keyframes menuSlideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    nav.active {
+        display: flex;
+    }
+    nav a {
+        width: 100%;
+        font-size: 15px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--gray-light);
+    }
+    nav a::after { display: none; }
+
+    .hero {
+        min-height: auto;
+        padding: 120px 0 80px;
+    }
+    .hero h1 {
+        font-size: 32px;
+    }
+    .hero-flyer-card {
+        display: none;
+    }
+    .hero-float-elements {
+        display: none;
+    }
+    .hero-stats {
+        gap: 20px;
+    }
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .section-header h2 {
+        font-size: 30px;
+    }
+
+    .levels-grid,
+    .activities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .infra-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 14px;
+    }
+
+    .pres-values {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Timeline móvil */
+    .timeline-line {
+        left: 20px;
+    }
+    .timeline-item.left,
+    .timeline-item.right {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 0;
+        text-align: left;
+    }
+    .timeline-item.left .timeline-dot,
+    .timeline-item.right .timeline-dot {
+        left: -2px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    .footer-brand {
+        grid-column: span 2;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quote-content h2 {
+        font-size: 24px;
+    }
+}
+
+/* Móvil pequeño */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .infra-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .pres-values {
+        grid-template-columns: 1fr;
+    }
+
+    .years-circle {
+        width: 80px;
+        height: 80px;
+    }
+    .years-number {
+        font-size: 30px;
+    }
+    .years-label {
+        font-size: 22px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .footer-brand {
+        grid-column: span 1;
+    }
+
+    .gallery-filters {
+        gap: 6px;
+    }
+    .filter-btn {
+        padding: 6px 14px;
+        font-size: 11px;
+    }
+
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 65vh;
+    }
+    .lightbox-close {
+        top: 12px;
+        right: 15px;
+        font-size: 32px;
+    }
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .hymn-card {
+        padding: 30px 20px;
+    }
+}
