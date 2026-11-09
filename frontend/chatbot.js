@@ -1,4 +1,4 @@
-const API_URL = "https://majestic-pavlova-cc01e9.netlify.app";
+const API_URL = "https://biblioteca-inteligente-iirc.onrender.com/";
 
 const abrirChat = document.getElementById("abrirChat");
 const cerrarChat = document.getElementById("cerrarChat");
