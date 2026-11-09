@@ -1,3 +1,4 @@
+
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -7,8 +8,14 @@ class Settings(BaseSettings):
     mongodb_uri: str
     database_name: str = "biblioteca_inteligente"
 
+    # Configuración de Ollama
     ollama_url: str = "http://localhost:11434"
     ollama_model: str = "llama3.2:3b"
+
+    # Configuración de IA
+    ai_provider: str = "ollama"
+    gemini_api_key: str = ""
+    gemini_model: str = "gemini-flash-latest"
 
     model_config = SettingsConfigDict(
         env_file=BASE_DIR / ".env",

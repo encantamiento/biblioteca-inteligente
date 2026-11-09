@@ -17,8 +17,8 @@ class Pregunta(BaseModel):
 async def conversar(datos: Pregunta):
 
     try:
-        respuesta = await consultar_ollama(
-            datos.mensaje,
+        respuesta = await consultar_ia(
+            datos.mensaje, 
             datos.grado
         )
 
@@ -28,7 +28,12 @@ async def conversar(datos: Pregunta):
             "grado": datos.grado,
             "modelo": "Ollama"
         }
-
+    except ValueError as error:
+    raise HTTPException(
+        status_code=503, 
+        detail=str(error)
+        )
+        
     except httpx.RequestError:
         raise HTTPException(
             status_code=503,
