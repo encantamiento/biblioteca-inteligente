@@ -48,20 +48,31 @@ async def consultar_ollama(pregunta: str, grado: int):
         return resultado["message"]["content"]
 
 
+
+import httpx
+from config import settings
+
+
 async def consultar_gemini(pregunta: str, grado: int):
     if not settings.gemini_api_key:
-        raise ValueError("No está configurada la clave de Gemini.")
+        raise ValueError("Falta configurar GEMINI_API_KEY en Render.")
 
     url = (
-        "https://generativelanguage.googleapis.com/v1beta/"
-        f"models/{settings.gemini_model}:generateContent"
+        "https://generativelanguage.googleapis.com/"
+        "v1beta/models/"
+        f"{settings.gemini_model}:generateContent"
     )
+
+    instrucciones = f"""
+    Eres el asistente educativo de la I.E. Javier Pérez de Cuéllar.
+    El estudiante cursa {grado} grado de primaria.
+    Explica con palabras sencillas, ejemplos y paciencia.
+    No inventes información de libros que no hayas consultado.
+    """
 
     datos = {
         "system_instruction": {
-            "parts": [
-                {"text": crear_instrucciones(grado)}
-            ]
+            "parts": [{"text": instrucciones}]
         },
         "contents": [
             {
@@ -72,32 +83,48 @@ async def consultar_gemini(pregunta: str, grado: int):
         ],
         "generationConfig": {
             "temperature": 0.4,
-            "maxOutputTokens": 1500
+            "maxOutputTokens": 1200
         }
     }
 
-    async with httpx.AsyncClient(timeout=120) as cliente:
+    async with httpx.AsyncClient(timeout=90) as cliente:
         respuesta = await cliente.post(
             url,
-            params={"key": settings.gemini_api_key},
+            headers={
+                "x-goog-api-key": settings.gemini_api_key,
+                "Content-Type": "application/json"
+            },
             json=datos
         )
 
-        respuesta.raise_for_status()
-        resultado = respuesta.json()
+        if respuesta.is_error:
+            print(
+                "Error Gemini:",
+                respuesta.status_code,
+                respuesta.text[:1500]
+            )
 
+        respuesta.raise_for_status()
+
+        resultado = respuesta.json()
         candidatos = resultado.get("candidates", [])
 
         if not candidatos:
-            raise ValueError("Gemini no devolvió una respuesta.")
+            raise ValueError("Gemini no devolvió candidatos.")
 
-        partes = candidatos[0]["content"]["parts"]
+        partes = candidatos[0].get("content", {}).get("parts", [])
 
-        return "\n".join(
+        texto = "\n".join(
             parte["text"]
             for parte in partes
             if "text" in parte
         )
+
+        if not texto:
+            raise ValueError("Gemini no devolvió texto.")
+
+        return texto
+
 
 
 async def consultar_ia(pregunta: str, grado: int):
