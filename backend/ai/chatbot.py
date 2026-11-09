@@ -1,6 +1,7 @@
 
 import httpx
 from config import settings
+import asyncio
 
 
 def crear_instrucciones(grado: int):
@@ -87,22 +88,33 @@ async def consultar_gemini(pregunta: str, grado: int):
         }
     }
 
+    
     async with httpx.AsyncClient(timeout=90) as cliente:
-        respuesta = await cliente.post(
-            url,
-            headers={
-                "x-goog-api-key": settings.gemini_api_key,
-                "Content-Type": "application/json"
-            },
-            json=datos
-        )
+
+        for intento in range(3):
+            respuesta = await cliente.post(
+                url,
+                headers={
+                    "x-goog-api-key": settings.gemini_api_key,
+                    "Content-Type": "application/json"
+                },
+                json=datos
+            )
+
+            if respuesta.status_code not in (429, 500, 502, 503, 504):
+                break
+
+            if intento < 2:
+                espera = 2 ** (intento + 1)
+                print(
+                    f"Gemini temporalmente no disponible. "
+                    f"Reintento en {espera} segundos."
+                )
+                await asyncio.sleep(espera)
 
         if respuesta.is_error:
-            print(
-                "Error Gemini:",
-                respuesta.status_code,
-                respuesta.text[:1500]
-            )
+            print("Error Gemini:", respuesta.status_code)
+            print("Detalle:", respuesta.text[:1500])
 
         respuesta.raise_for_status()
 
@@ -124,6 +136,7 @@ async def consultar_gemini(pregunta: str, grado: int):
             raise ValueError("Gemini no devolvió texto.")
 
         return texto
+
 
 
 
