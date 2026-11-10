@@ -1,4 +1,5 @@
-const API_URL = "https://biblioteca-inteligente-iirc.onrender.com/";
+
+const API_URL = "https://biblioteca-inteligente-iirc.onrender.com";
 
 const abrirChat = document.getElementById("abrirChat");
 const cerrarChat = document.getElementById("cerrarChat");
@@ -30,7 +31,6 @@ function agregarMensaje(texto, tipo) {
 }
 
 async function enviarPregunta() {
-
     const pregunta = preguntaChat.value.trim();
 
     if (!pregunta) return;
@@ -40,31 +40,29 @@ async function enviarPregunta() {
     preguntaChat.value = "";
     enviarChat.disabled = true;
 
-    const cargando = agregarMensaje(
-        "Estoy pensando...",
-        "ia"
-    );
+    const cargando = agregarMensaje("Estoy pensando...", "ia");
 
     try {
-
-        const respuesta = await fetch(
-            `${API_URL}/api/chat/`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    mensaje: pregunta,
-                    grado: Number(gradoChat.value)
-                })
-            }
-        );
+        const respuesta = await fetch(`${API_URL}/api/chat/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                mensaje: pregunta,
+                grado: Number(gradoChat.value)
+            })
+        });
 
         if (!respuesta.ok) {
-            throw new Error("Error del servidor");
+            const detalle = await respuesta.text();
+
+            console.error("Error del servidor:", {
+                estado: respuesta.status,
+                detalle: detalle
+            });
+
+            throw new Error(`HTTP ${respuesta.status}: ${detalle}`);
         }
 
         const datos = await respuesta.json();
@@ -72,16 +70,14 @@ async function enviarPregunta() {
         cargando.textContent = datos.respuesta;
 
     } catch (error) {
+        console.error("Error del chatbot:", error);
 
         cargando.textContent =
-            "No pude conectarme. Comprueba que FastAPI y Ollama estén funcionando.";
-
-        console.error(error);
+            "No pude obtener una respuesta. Detalle: " + error.message;
 
     } finally {
-
         enviarChat.disabled = false;
-
+        preguntaChat.focus();
     }
 }
 

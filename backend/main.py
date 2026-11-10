@@ -45,7 +45,7 @@ def inicio():
 def estado():
     return {
         "servidor": "activo",
-        "inteligencia_artificial": "Ollama",
+        "inteligencia_artificial": "Gemini",
         "base_de_datos": "MongoDB Atlas"
     }
 
