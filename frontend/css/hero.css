@@ -442,6 +442,8 @@
         height: auto;
         padding: 110px 20px 80px;
         box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero-content {
