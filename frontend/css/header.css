@@ -1,36 +1,51 @@
+
 /* ==================================================
    HEADER / NAVEGACIÓN
 ================================================== */
+
 .header {
     position: fixed;
-    width: 100%;
     top: 0;
     left: 0;
+    width: 100%;
     z-index: 1000;
-    background: rgba(255,255,255,0.97);
+    background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-}
-.header.scrolled {
-    box-shadow: 0 5px 25px rgba(10,42,74,0.12);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+    box-sizing: border-box;
 }
 
+.header.scrolled {
+    box-shadow: 0 5px 25px rgba(10, 42, 74, 0.12);
+}
+
+/* Contenedor de navegación */
 .navbar {
     min-height: 72px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
+    position: relative;
 }
+
+/* ==================================================
+   LOGO
+================================================== */
 
 .logo {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-shrink: 0;
+    text-decoration: none;
     transition: transform 0.3s ease;
 }
+
 .logo:hover {
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 .logo-img {
@@ -40,8 +55,9 @@
     border-radius: 8px;
     transition: transform 0.3s ease;
 }
+
 .logo:hover .logo-img {
-    transform: rotate(-3deg) scale(1.05);
+    transform: rotate(-3deg);
 }
 
 .logo-text {
@@ -49,12 +65,14 @@
     flex-direction: column;
     line-height: 1.2;
 }
+
 .logo-text strong {
     color: var(--navy);
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     font-weight: 800;
 }
+
 .logo-text span {
     color: var(--gold);
     font-size: 11px;
@@ -62,35 +80,46 @@
     letter-spacing: 1px;
 }
 
+/* ==================================================
+   MENÚ DE NAVEGACIÓN
+================================================== */
+
 nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: flex-end;
+    gap: 6px;
 }
+
 nav a {
     color: var(--text-dark);
     font-size: 13px;
     font-weight: 600;
-    padding: 8px 14px;
+    padding: 9px 12px;
     border-radius: var(--radius-sm);
     position: relative;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, background 0.3s ease;
     display: flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
+    text-decoration: none;
 }
+
 nav a i {
     font-size: 11px;
     color: var(--gold);
 }
+
 nav a:hover {
     color: var(--navy);
     background: var(--gray-light);
 }
+
 nav a::after {
     content: '';
     position: absolute;
-    bottom: 2px;
+    bottom: 3px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
@@ -98,12 +127,20 @@ nav a::after {
     background: var(--gold);
     transition: width 0.3s ease;
 }
+
 nav a:hover::after {
     width: 60%;
 }
 
+/* ==================================================
+   BOTÓN MENÚ HAMBURGUESA
+================================================== */
+
 .menu-btn {
     display: none;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
     border: none;
     background: var(--navy);
     color: white;
@@ -112,10 +149,189 @@ nav a:hover::after {
     border-radius: 10px;
     font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
     position: relative;
+    z-index: 1002;
 }
+
 .menu-btn:hover {
     background: var(--navy-light);
-    transform: rotate(90deg);
+}
+
+.menu-btn:focus-visible,
+nav a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+/* ==================================================
+   RESPONSIVE – TABLETS
+================================================== */
+
+@media screen and (max-width: 900px) {
+    .navbar {
+        gap: 12px;
+    }
+
+    nav {
+        gap: 2px;
+    }
+
+    nav a {
+        font-size: 12px;
+        padding: 8px 9px;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+    .logo-img {
+        width: 48px;
+        height: 54px;
+    }
+
+    .logo-text strong {
+        font-size: 13px;
+    }
+
+    .logo-text span {
+        font-size: 10px;
+    }
+}
+
+/* ==================================================
+   RESPONSIVE – CELULARES
+================================================== */
+
+@media screen and (max-width: 700px) {
+    .header {
+        width: 100%;
+    }
+
+    .navbar {
+        min-height: 68px;
+        gap: 10px;
+    }
+
+    .logo-img {
+        width: 45px;
+        height: 50px;
+    }
+
+    .logo-text strong {
+        font-size: 13px;
+    }
+
+    .logo-text span {
+        font-size: 9px;
+        letter-spacing: 0.7px;
+    }
+
+    /* Mostrar botón hamburguesa */
+    .menu-btn {
+        display: flex;
+    }
+
+    /* Menú desplegable */
+    nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 5px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 12px 25px rgba(10, 42, 74, 0.12);
+        border-top: 1px solid rgba(10, 42, 74, 0.08);
+        border-radius: 0 0 12px 12px;
+        box-sizing: border-box;
+    }
+
+    /* Clase que activa JavaScript */
+    nav.active {
+        display: flex;
+    }
+
+    nav a {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 13px 15px;
+        font-size: 14px;
+        border-radius: 8px;
+        justify-content: flex-start;
+    }
+
+    nav a::after {
+        display: none;
+    }
+
+    nav a:hover {
+        background: var(--gray-light);
+    }
+}
+
+/* ==================================================
+   RESPONSIVE – CELULARES PEQUEÑOS
+================================================== */
+
+@media screen and (max-width: 380px) {
+    .navbar {
+        min-height: 64px;
+    }
+
+    .logo {
+        gap: 7px;
+    }
+
+    .logo-img {
+        width: 40px;
+        height: 45px;
+    }
+
+    .logo-text strong {
+        font-size: 12px;
+    }
+
+    .logo-text span {
+        font-size: 8px;
+    }
+
+    .menu-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    nav {
+        padding: 12px;
+    }
+
+    nav a {
+        font-size: 13px;
+        padding: 12px;
+    }
+}
+
+/* ==================================================
+   ACCESIBILIDAD
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .header,
+    .logo,
+    .logo-img,
+    nav a,
+    .menu-btn {
+        transition: none;
+    }
 }
