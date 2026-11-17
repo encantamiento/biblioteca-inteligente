@@ -98,7 +98,69 @@ const contentData = {
     { src: "img/galeria/03-canto.webp",       alt: "Concurso de canto 'Voces que Brillan'",  category: "cultura" },
     { src: "img/galeria/04-ciencia.webp",     alt: "Feria de Ciencia y Tecnología 2026",     category: "actividades" },
     { src: "img/galeria/05-campeonato.webp",  alt: "Campeonato interssecciones",             category: "deportes" },
-    { src: "img/galeria/06-aniversario.webp", alt: "103 Años de Historia",                   category: "actividades" }
+    { src: "img/galeria/06-aniversario.webp", alt: "103 Años de Historia",                   category: "actividades" },
+    { src: "img/galeria/IMG_20261111_100338.jpg.jpeg",        alt: "Actividad de medio ambiente",category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_124636.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_124153.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_123431.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_123329.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_122536.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_122027.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_121017.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_120535.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_120026.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_115423.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_115109.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    },
+    {
+        src: "img/galeria/IMG_20261111_114916.jpg.jpeg",
+        alt: "Actividad escolar",
+        category: "actividades"
+    }
     ],
 
         // Información de contacto
