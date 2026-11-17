@@ -2,6 +2,9 @@
    RESPONSIVE – TABLET Y MÓVIL
 ================================================== */
 
+/* Mapa adaptable (el iframe trae width="600" fijo) */
+.contact-map iframe { width: 100%; height: 380px; }
+
 /* Tablet */
 @media (max-width: 1024px) {
     .presentation-grid {
@@ -21,6 +24,9 @@
     .footer-grid {
         grid-template-columns: 1fr 1fr 1fr;
     }
+    .footer-brand { grid-column: 1 / -1; }
+
+    /* Timeline: una sola columna */
     .timeline-line { left: 20px; }
     .timeline-item.left,
     .timeline-item.right {
@@ -35,17 +41,21 @@
         left: -2px;
         right: auto;
     }
-    .footer-brand { grid-column: 1 / -1; }
-    .timeline-item.left .timeline-dot,
-    .timeline-item.right .timeline-dot {
-        left: -22px;
-    }
-    .timeline-line {
-        left: 0;
-    }
+
+    /* Hero centrado */
     .hero-content {
         flex-direction: column;
         text-align: center;
+        gap: 35px;
+    }
+    .hero-text {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
     }
     .hero-flyer-card {
         width: 260px;
@@ -55,6 +65,9 @@
     }
     .hero-buttons {
         justify-content: center;
+    }
+    .level-card {
+        padding: 32px 24px;
     }
 }
 
@@ -68,6 +81,9 @@
         top: 72px;
         left: 0;
         width: 100%;
+        max-height: calc(100vh - 72px);
+        max-height: calc(100dvh - 72px);
+        overflow-y: auto;
         background: white;
         padding: 20px;
         display: none;
@@ -93,12 +109,30 @@
     }
     nav a::after { display: none; }
 
+    /* ---------- HERO MÓVIL ---------- */
     .hero {
-        min-height: auto;
-        padding: 120px 0 80px;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 100px 0 70px;
+    }
+    .hero-content {
+        gap: 0;
+    }
+    .hero-badge {
+        max-width: 100%;
+        font-size: 10px;
+        letter-spacing: 1px;
+        line-height: 1.4;
+        padding: 7px 16px;
+        margin-bottom: 18px;
     }
     .hero h1 {
         font-size: 32px;
+        margin-bottom: 16px;
+    }
+    .hero p {
+        font-size: 15px;
+        margin-bottom: 24px;
     }
     .hero-flyer-card {
         display: none;
@@ -106,15 +140,47 @@
     .hero-float-elements {
         display: none;
     }
+    .scroll-indicator {
+        display: none;
+    }
     .hero-stats {
-        gap: 20px;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 26px;
     }
     .stat-number {
         font-size: 28px;
     }
+    .stat-label {
+        font-size: 10px;
+    }
+    .btn {
+        padding: 12px 24px;
+    }
 
+    /* Espaciado de secciones */
+    .flyers-section,
+    .presentation,
+    .history-section,
+    .levels-section,
+    .infra-section,
+    .activities-section,
+    .quote-section,
+    .gallery-section,
+    .contact-section {
+        padding: 70px 0;
+    }
+    .section-header {
+        margin-bottom: 35px;
+    }
     .section-header h2 {
         font-size: 30px;
+    }
+    .glass-card {
+        padding: 22px;
+    }
+    .level-card {
+        padding: 30px 24px;
     }
 
     .levels-grid,
@@ -162,6 +228,12 @@
     .contact-grid {
         grid-template-columns: 1fr;
     }
+    .contact-map iframe {
+        height: 280px;
+    }
+    .contact-socials {
+        flex-wrap: wrap;
+    }
 
     .quote-content h2 {
         font-size: 24px;
@@ -170,6 +242,9 @@
 
 /* Móvil pequeño */
 @media (max-width: 480px) {
+    .hero {
+        padding: 95px 0 60px;
+    }
     .hero h1 {
         font-size: 28px;
     }
@@ -180,6 +255,21 @@
     .hero-buttons .btn {
         width: 100%;
         justify-content: center;
+    }
+
+    .flyers-section,
+    .presentation,
+    .history-section,
+    .levels-section,
+    .infra-section,
+    .activities-section,
+    .quote-section,
+    .gallery-section,
+    .contact-section {
+        padding: 55px 0;
+    }
+    .section-header h2 {
+        font-size: 26px;
     }
 
     .infra-grid {
@@ -222,6 +312,9 @@
         font-size: 11px;
     }
 
+    .lightbox {
+        padding: 20px;
+    }
     .lightbox-content {
         max-width: 95%;
         max-height: 65vh;
@@ -240,15 +333,31 @@
     .hymn-card {
         padding: 30px 20px;
     }
-    /* Mapa adaptable (el iframe trae width="600" fijo) */
-.contact-map iframe { width: 100%; height: 380px; }
-@media (max-width: 768px) {
-    .contact-map iframe { height: 280px; }
+}
+
+/* Teléfonos muy angostos */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 25px;
+    }
+    .hero-stats {
+        gap: 12px;
+    }
+    .stat-number {
+        font-size: 24px;
+    }
+    .logo-text strong {
+        font-size: 13px;
+    }
 }
 
 /* Celular en horizontal */
 @media (orientation: landscape) and (max-height: 500px) {
-    .hero { min-height: auto; padding: 100px 0 50px; }
-    .scroll-indicator { display: none; }
-}
+    .hero {
+        min-height: auto;
+        padding: 100px 0 50px;
+    }
+    .scroll-indicator {
+        display: none;
+    }
 }
