@@ -95,11 +95,11 @@ const contentData = {
     gallery: [
     { src: "img/galeria/01-fachada.webp",     alt: "Fachada de la I.E.",                    category: "infraestructura" },
     { src: "img/galeria/02-aula.webp",        alt: "Sala de cómputo",                        category: "infraestructura" },
-    { src: "img/galeria/03-canto.webp",       alt: "Concurso de canto 'Voces que Brillan'",  category: "cultura" },
-    { src: "img/galeria/04-ciencia.webp",     alt: "Feria de Ciencia y Tecnología 2026",     category: "actividades" },
-    { src: "img/galeria/05-campeonato.webp",  alt: "Campeonato interssecciones",             category: "deportes" },
-    { src: "img/galeria/06-aniversario.webp", alt: "103 Años de Historia",                   category: "actividades" },
-    { src: "img/galeria/IMG_20261111_100338.jpg.jpeg",        alt: "Actividad de medio ambiente",category: "actividades"
+    { src: "img/flyers/03-concurso-canto.webp",       alt: "Concurso de canto 'Voces que Brillan'",  category: "cultura" },
+    { src: "img/flyers/04-feria-ciencia.webp",     alt: "Feria de Ciencia y Tecnología 2026",     category: "actividades" },
+    { src: "img/actividades/deportes.webp",  alt: "Campeonato interssecciones",             category: "deportes" },
+    { src: "img/hero/escuela.webp", alt: "103 Años de Historia",                   category: "actividades" },
+    { src: "img/galeria/IMG_20261111_100338.jpg.webp",        alt: "Actividad de medio ambiente",category: "actividades"
     },
     {
         src: "img/galeria/IMG_20261111_124636.jpg.webp",
@@ -178,7 +178,7 @@ const contentData = {
       { image: "img/flyers/02-fachada.webp",        title: "Nuestra Institución",                        description: "Estudio · Trabajo · Disciplina", category: "logro" },
       { image: "img/flyers/03-concurso-canto.webp", title: "Concurso de Canto 'Voces que Brillan'",      description: "FELIZ ANIVERSARIO 103 AÑOS",     category: "aniversario" },
       { image: "img/flyers/04-feria-ciencia.webp",  title: "Feria Nacional Escolar de Ciencia y Tecnología", description: "Feria 2026",                 category: "logro" },
-      { image: "img/flyers/05-campeonato.webp",     title: "Campeonato Interssecciones",                 description: "FELIZ ANIVERSARIO 103 AÑOS",     category: "aniversario" }
+      { image: "img/actividades/deportes.webp",     title: "Campeonato Interssecciones",                 description: "FELIZ ANIVERSARIO 103 AÑOS",     category: "aniversario" }
     ]
 };
 
