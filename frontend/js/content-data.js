@@ -102,62 +102,62 @@ const contentData = {
     { src: "img/galeria/IMG_20261111_100338.jpg.jpeg",        alt: "Actividad de medio ambiente",category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_124636.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_124636.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_124153.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_124153.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_123431.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_123431.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_123329.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_123329.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_122536.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_122536.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_122027.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_122027.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_121017.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_121017.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_120535.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_120535.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_120026.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_120026.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_115423.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_115423.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_115109.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_115109.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     },
     {
-        src: "img/galeria/IMG_20261111_114916.jpg.jpeg",
+        src: "img/galeria/IMG_20261111_114916.jpg.webp",
         alt: "Actividad escolar",
         category: "actividades"
     }
